@@ -1,16 +1,19 @@
 let formCount = 1; // Start with one form
+let value2 = 2;
+let value3 = 3;
 
 const addform = document.getElementById('add-form')
 addform.addEventListener("click",() => {
-    let value2 = 2;
-    let value3 = 3;
+   
     if (formCount) {
+
         let formContainer = document.getElementById("container-form");
         let newForm = document.createElement("div");
+        newForm.classList.add('container-form')
         newForm.innerHTML = `
         <div class="w-full">
         <div class="grid">
-            <label class="font-bold" for="type">ชิ้นที่ 1</label>
+            <label class="font-bold" for="type">ชิ้นที่${formCount+1}</label>
             <label for="type">ประเภทสินค้า</label>
         </div>
         <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
@@ -22,9 +25,9 @@ addform.addEventListener("click",() => {
             <select id="selectBox-${formCount}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px]"
                 required>
                 <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
-                <option value="option-${formCount}">Option${formCount}</option>
-                <option value="option-${value2}">Option ${value2}</option>
-                <option value="option-${value3}">Option ${value3}</option>
+                <option value="option-${formCount+1}">Option ${formCount+1}</option>
+                <option value="option-${value2+1}">Option ${value2+1}</option>
+                <option value="option-${value3+1}">Option ${value3+1}</option>
             </select>
         </div>
     </div>

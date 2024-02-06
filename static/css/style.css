@@ -20,3 +20,12 @@ body{
    -webkit-appearance:none; /* Safari and Chrome */
    appearance:none;
 }
+
+.container-form
+{
+   display: flex;
+   justify-content:space-between;
+   align-items: flex-end;
+   gap: 15px;
+   margin-top: 10px;
+}

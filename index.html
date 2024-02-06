@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="text-left flex justify-between gap-[15px] items-end" id="container-form">
+                    <div class="text-left  gap-[15px] my-[10px]" id="container-form">
                     </div>
 
                     <div class="mt-[2rem] flex justify-end">
@@ -88,11 +88,11 @@
                     <hr class="mt-[1rem]">
 
                     <div class="mt-[1rem] flex justify-between gap-[15px] h-[15vh]">
-                        <div class="w-[50%] bg-[#28B7E1]">100*100</div>
+                        <div class="w-[50%] bg-[#28B7E1]" id="img-preview">100*100</div>
                         <div class="w-[50%] grid items-center">
                             <label class=" border-2 border-[#28B7E1] w-full rounded-[6px] py-[5px] text-[#28B7E1]">
                                 อัพโหลดรูป
-                                <input type="file" class="absolute opacity-0 cursor-pointer" required>
+                                <input type="file" class="absolute opacity-0 cursor-pointer" id="upload-img" required>
                             </label>
                             <label class="mb-2 text-[#28B7E1] text-left" for="file-input">
                                 Image should be at least 300 x 300 px in PNG or JPG.
@@ -135,5 +135,6 @@
 <script src="./static/js/Script.js"></script>
 <script src="./static/js/Add-form.js"></script>
 <script  src="/static/js/hideAndseek.js" ></script>
+<script  src="/static/js/img-preview.js" ></script>
 
 </html>
