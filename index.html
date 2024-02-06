@@ -24,7 +24,7 @@
                 <p>กรอกข้อมูลการขาย เพื่อสะสมแต้ม</p>
             </div>
             <div class="w-[80%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[2rem]">
-                <form action="">
+                <form action="" id="form-submit">
                     <div class="text-left">
                         <label class="font-bold" for="Phone">เบอร์โทร</label>
                         <input class="w-[100%] border-1 border-[#000] p-2 rounded-lg mt-[1rem] mb-[2rem]" type="text"
@@ -102,15 +102,38 @@
 
                     <div class="mt-[3rem]">
                         <button type="button"
-                            class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]">ยืนยัน</button>
+                            class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]" id="sent">ยืนยัน</button>
                     </div>
                 </form>
+
+                <div class="mt-[2rem] flex justify-center items-start" id="processLoading">
+                    <div class="mb-[3rem]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#24B6E0" class="bi bi-arrow-repeat animate-spin h-[30%] w-[30%] mx-auto mb-[2rem]" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+                                
+                            </svg>
+                            <h1>กำลังดำเนินการ.....</h1>
+                    </div>
+                </div>
+
+                <div class="mt-[2rem] flex justify-center items-start" id="success">
+                    <div class="mb-[3rem]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#05B917" class="bi bi-check-circle-fill h-[15%] w-[15%] mx-auto mb-[2rem] animate-bounce" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                          </svg>
+                            <h1>ลงทะเบียนสำเร็จ<br>คุณได้ทำการสะสมแต้มให้ทางลูกค้า</h1>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </div>
 </body>
+<!-- ------------------------Script---------------------------- -->
 <script src="./static/js/Script.js"></script>
 <script src="./static/js/Add-form.js"></script>
+<script  src="/static/js/hideAndseek.js" ></script>
 
 </html>
