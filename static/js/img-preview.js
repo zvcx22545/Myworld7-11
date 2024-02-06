@@ -38,45 +38,46 @@ uploadImgInput.addEventListener('change', (event) => {
                 imgPreview.style.backgroundPosition = 'center';
                 imgPreview.style.backgroundRepeat = 'no-repeat';
                 imgPreview.textContent = ''; // Clear the default text
+
+                // Add click event listener to imgPreview to open the modal
+                imgPreview.onclick = () => {
+                    openImageModal(e.target.result);
+                };
             };
-           
         };
-        
 
         reader.readAsDataURL(file);
-        imgPreview.forEach(function (image) {
-            image.addEventListener("click", function () {
-                // เมื่อรูปถูกคลิก แสดงรูปใหญ่ขึ้น
-                showLargeImage(this.src);
-            });
-        });
     } else {
-        // Handle case when no file is selected or user cancels selection
-        imgPreview.style.backgroundImage = 'none'; // Clear the background image
-        imgPreview.style.backgroundSize = 'auto'; // Reset background size
-        imgPreview.textContent = '100*100'; // Restore the default text
+        imgPreview.style.backgroundImage = 'none';
+        imgPreview.style.backgroundSize = 'auto';
+        imgPreview.textContent = '100*100';
     }
 });
 
-function showLargeImage(imageSrc) {
-    // สร้างตัวแสดงรูปใหญ่ขึ้น
-    var largeImageContainer = document.createElement("div");
-    largeImageContainer.classList.add("large-image-container");
+function openImageModal(imageSrc) {
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.left = '0';
+    modal.style.top = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    modal.style.display = 'flex';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '1000';
 
-    // สร้างภาพใหญ่
-    var largeImage = document.createElement("img");
-    largeImage.src = imageSrc;
-    largeImage.classList.add("large-image");
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.style.maxWidth = '50%'; // Set max width to prevent image from being too large
+    img.style.maxHeight = '80%'; // Set max height to prevent image from being too large
+    img.style.margin = 'auto'; // Center the image inside the modal
 
-    // เพิ่มภาพใหญ่ลงในตัวแสดงรูปใหญ่ขึ้น
-    largeImageContainer.appendChild(largeImage);
+    modal.appendChild(img);
 
-    // เพิ่มตัวแสดงรูปใหญ่ขึ้นในหน้า
-    document.body.appendChild(largeImageContainer);
+    modal.onclick = () => {
+        modal.remove(); // Remove modal when clicked
+    };
 
-    // เพิ่มการจัดการคลิกเพื่อปิดรูปใหญ่
-    largeImageContainer.addEventListener("click", function () {
-        // เมื่อคลิกที่รูปใหญ่ ให้ปิดรูปใหญ่ลง
-        document.body.removeChild(largeImageContainer);
-    });
+    document.body.appendChild(modal);
 }
