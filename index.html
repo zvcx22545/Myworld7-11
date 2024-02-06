@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="flex justify-center items-center min-h-screen m-[2rem]">
+        <div class="w-[100%]">
+            <div class="text-center mb-[1rem]">
+                <img src="https://cdn.discordapp.com/attachments/1175992104988712970/1204425174456475658/logo-2_1.png"
+                    alt="" class="mx-auto block mb-[1rem] w-[15%]">
+                <p>My Beer</p>
+                <p>กรอกข้อมูลการขาย เพื่อสะสมแต้ม</p>
+            </div>
+            <div class="w-[80%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[2rem]">
+                <form action="">
+                    <div class="text-left">
+                        <label class="font-bold" for="Phone">เบอร์โทร</label>
+                        <input class="w-[100%] border-1 border-[#000] p-2 rounded-lg mt-[1rem] mb-[2rem]" type="text"
+                            required>
+                    </div>
+
+                    <hr class="mb-[2rem]">
+
+                    <div class="text-left flex justify-between gap-[15px] items-end">
+                        <div class="w-full">
+                            <div class="grid">
+                                <label class="font-bold" for="type">ชิ้นที่ 1</label>
+                                <label for="type">ประเภทสินค้า</label>
+                            </div>
+                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                                <!-- Adjust this div to use flex and justify-between for alignment -->
+                                <div
+                                    class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+                                    <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                </div>
+                                <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px]"
+                                    required>
+                                    <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
+                                    <option value="option1">Option 1</option>
+                                    <option value="option2">Option 2</option>
+                                    <option value="option3">Option 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid items-end w-full">
+                            <label for="type">ราคา (บาท)</label>
+                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem]"
+                                type="text" required>
+                        </div>
+                    </div>
+
+                    <div class="text-left flex justify-between gap-[15px] items-end" id="container-form">
+                    </div>
+
+                    <div class="mt-[2rem] flex justify-end">
+                        <button class=" border-2 border-[#28B7E1] rounded-[6px] w-[20%] py-[5px] text-[#28B7E1]"
+                            type="button" id="add-form"> <i class="bi bi-plus-circle"></i>เพิ่ม</button>
+                    </div>
+                    <hr class="mt-[2rem]">
+
+                    <div class="text-left flex justify-between gap-[15px] items-end mt-[1rem]">
+                        <div class="w-full">
+                            <div class="grid">
+                                <label for="type">ช่องทางการจัดจำหน่าย</label>
+                            </div>
+                            <input
+                                class="w-[100%] h-[40px] bg-[#DEDEDE] text-[#858585] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem]"
+                                value="หน้าร้าน" readonly>
+                        </div>
+                        <div class="grid items-end w-full">
+                            <label for="type">ผู้ขายสินค้า</label>
+                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem]"
+                                type="text" required>
+                        </div>
+                    </div>
+                    <hr class="mt-[1rem]">
+
+                    <div class="mt-[1rem] flex justify-between gap-[15px] h-[15vh]">
+                        <div class="w-[50%] bg-[#28B7E1]">100*100</div>
+                        <div class="w-[50%] grid items-center">
+                            <label class=" border-2 border-[#28B7E1] w-full rounded-[6px] py-[5px] text-[#28B7E1]">
+                                อัพโหลดรูป
+                                <input type="file" class="absolute opacity-0 cursor-pointer" required>
+                            </label>
+                            <label class="mb-2 text-[#28B7E1] text-left" for="file-input">
+                                Image should be at least 300 x 300 px in PNG or JPG.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-[3rem]">
+                        <button type="button"
+                            class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]">ยืนยัน</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="./static/js/Script.js"></script>
+<script src="./static/js/Add-form.js"></script>
+
+</html>

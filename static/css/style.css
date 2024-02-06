@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Kanit', sans-serif;
+   margin:0; 
+   padding:0;
+   /* outline: none; 
+   border:none; */
+   text-decoration: none;
+   transition: all .2s linear;
+   text-transform: capitalize;
+}
+body{
+    background-image: url(https://cdn.discordapp.com/attachments/1147854094929776664/1201735870869417984/bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+ .styled-select select {
+   -webkit-appearance:none; /* Safari and Chrome */
+   appearance:none;
+}
