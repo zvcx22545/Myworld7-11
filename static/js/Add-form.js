@@ -55,11 +55,15 @@ addform.addEventListener("click",() => {
      
 });
 
-function deleteForm(formCount) {
-    let formContainer = document.getElementById("container-form");
-    let formToDelete = document.getElementById("container-form-" + formCount);
-    if (formToDelete) {
-        formContainer.removeChild(formToDelete);
-        formCount-1;
+function deleteForm(formNumber) {
+    // หา DOM element ของฟอร์มที่ต้องการลบ
+    var formToRemove = document.getElementById("container-form-" + formNumber);
+  
+    if (formToRemove) {
+        // ลบฟอร์มออกจาก DOM
+        formToRemove.remove();
+  
+        // ลดจำนวนฟอร์มที่เหลือลง 1
+        formCount--;
     }
-}
+  }
