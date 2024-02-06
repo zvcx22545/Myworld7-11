@@ -22,7 +22,7 @@ addform.addEventListener("click",() => {
                 class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
                 <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
             </div>
-            <select id="selectBox-${formCount}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px]"
+            <select id="selectBox-${formCount}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
                 required>
                 <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
                 <option value="option-${formCount+1}">Option ${formCount+1}</option>
