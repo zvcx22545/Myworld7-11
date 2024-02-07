@@ -1,49 +1,46 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const sentButton = document.getElementById('sent');
-    const form = document.getElementById('form-submit');
-    const top = document.getElementById('top-contents');
     const processLoading = document.getElementById('processLoading');
     const closeBTN = document.getElementById('closeSuccess');
     const successDiv = document.getElementById('success');
-    
+    const form = document.getElementById('form-submit');
+    const top = document.getElementById('top-contents');
+    const sentButton = document.getElementById('sent');
+
     // ซ่อน div "processLoading" และ "success" เมื่อเริ่ม
     processLoading.style.display = 'none';
-    closeBTN.style.display = 'none';
     successDiv.style.display = 'none';
+    closeBTN.style.display = 'none';
     top.style.display = 'block';
 
     sentButton.addEventListener('click', () => {
+        processLoading.style.display = 'flex';
         form.style.display = 'none';
         top.style.display = 'none';
-        processLoading.style.display = 'flex';
 
-        // รอ 5 วินาทีแล้วแสดง div "success"
         setTimeout(() => {
-            form.style.display = 'none';
             processLoading.style.display = 'none';
-            closeBTN.style.display = 'none';
             successDiv.style.display = 'block';
+            closeBTN.style.display = 'none';
             closeBTN.style.display = 'flex';
+            form.style.display = 'none';
 
-            // เมื่อ div "success" ถูกแสดง ให้เริ่มนับถอยหลัง
-            var countdown = 3; // เวลาที่ต้องการ (หน่วยเป็นวินาที)
-
+            var countdown = 3; 
             var countdownButton = document.getElementById("countdownButton");
 
-            // ตั้งค่าเวลาแสดงบนปุ่ม
             countdownButton.innerText = "( " + countdown + " ) " + " ปิด";
 
-            // นับถอยหลัง
             var countdownInterval = setInterval(function () {
                 countdown--;
                 if (countdown <= 0) {
                     clearInterval(countdownInterval);
                     countdownButton.innerText = "เสร็จสิ้น";
-                    // เพิ่มการดำเนินการที่ต้องการเมื่อนับถอยหลังเสร็จสิ้นที่นี่
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
                 } else {
                     countdownButton.innerText = "( " + countdown + " ) " + " ปิด";
                 }
-            }, 1000); // นับเวลาทุกๆ 1 วินาที (1000 มิลลิวินาที)
+            }, 1000);
 
         }, 5000);
     });
