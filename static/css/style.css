@@ -13,9 +13,7 @@
 body{
     background-image: url(https://cdn.discordapp.com/attachments/1147854094929776664/1201735870869417984/bg.png);
     background-repeat: no-repeat;
-    background-size: contain;
-    display: grid;
-    justify-content: center;
+    background-size: 100%;
  }
 
  .styled-select select {
