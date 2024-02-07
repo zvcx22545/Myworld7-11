@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const sentButton = document.getElementById('sent');
     const form = document.getElementById('form-submit');
+    const top = document.getElementById('top-contents');
     const processLoading = document.getElementById('processLoading');
     const closeBTN = document.getElementById('closeSuccess');
     const successDiv = document.getElementById('success');
@@ -9,9 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     processLoading.style.display = 'none';
     closeBTN.style.display = 'none';
     successDiv.style.display = 'none';
+    top.style.display = 'block';
 
     sentButton.addEventListener('click', () => {
         form.style.display = 'none';
+        top.style.display = 'none';
         processLoading.style.display = 'flex';
 
         // รอ 5 วินาทีแล้วแสดง div "success"
