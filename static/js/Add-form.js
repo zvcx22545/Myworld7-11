@@ -1,4 +1,4 @@
-let formCount = 0; // Start with one form
+let formCount = 1; // Start with one form
 let value2 = 2;
 let value3 = 3;
 
@@ -10,7 +10,7 @@ addform.addEventListener("click",() => {
         let formContainer = document.getElementById("container-form");
         let newForm = document.createElement("div");
         newForm.classList.add('container-form')
-        formCount++;
+        // formCount++;
 
         newForm.innerHTML = `
         <div class="w-full">
@@ -47,6 +47,7 @@ addform.addEventListener("click",() => {
       `;
       newForm.id = "container-form-" + formCount; // Update ID of the new form section
       formContainer.appendChild(newForm);
+      formCount++;
       value2++;
       value3++;
     //   formCount++;
@@ -55,11 +56,23 @@ addform.addEventListener("click",() => {
      
 });
 
-function deleteForm(formCount) {
+function deleteForm(formCountToDelete) {
     let formContainer = document.getElementById("container-form");
-    let formToDelete = document.getElementById("container-form-" + formCount);
+    let formToDelete = document.getElementById("container-form-" + formCountToDelete);
     if (formToDelete) {
         formContainer.removeChild(formToDelete);
-        formCount-1;
+        // ปรับค่า formCount, value2, และ value3 ลดลงตามจำนวนที่ลบ
+        formCount--;
+        value2--;
+        value3--;
+        // อัพเดท id ของฟอร์มที่เหลือให้ถูกต้อง
+        for (let i = formCountToDelete + 1; i <= formCount; i++) {
+            let form = document.getElementById("container-form-" + i);
+            form.id = "container-form-" + (i - 1);
+            form.querySelector("label[for='Price-" + i + "']").textContent = "ราคา (บาท)";
+            form.querySelector("input#Price-" + i).id = "Price-" + (i - 1);
+            form.querySelector("select").id = "selectBox-" + (i - 1);
+            form.querySelector("label[for='type']").textContent = "ชิ้นที่" + (i - 1);
+        }
     }
 }
