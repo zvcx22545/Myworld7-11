@@ -6,7 +6,6 @@ const addform = document.getElementById('add-form')
 addform.addEventListener("click",() => {
    
     // if (formCount) {
-
         let formContainer = document.getElementById("container-form");
         let newForm = document.createElement("div");
         newForm.classList.add('container-form')
@@ -47,14 +46,40 @@ addform.addEventListener("click",() => {
       `;
       newForm.id = "container-form-" + formCount; // Update ID of the new form section
       formContainer.appendChild(newForm);
+      assignEventListeners();
       formCount++;
       value2++;
       value3++;
     //   formCount++;
-  
     //   } 
-     
 });
+
+function assignEventListeners() {
+    document.querySelectorAll('.select-Box').forEach(function(selectBox) {
+        selectBox.addEventListener('click', function(event) {
+            event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
+            const angleIcon = this.parentElement.querySelector('.fas.fa-angle-down');
+            if (!isRotated) {
+                angleIcon.style.transform = 'rotate(180deg)';
+                isRotated = true;
+            } else {
+                angleIcon.style.transform = 'rotate(0deg)';
+                isRotated = false;
+            }
+
+            if (!isRotated) this.size = 1;
+        });
+
+        selectBox.addEventListener('change', function() {
+            const angleIcon = this.parentElement.querySelector('.fas.fa-angle-down');
+            angleIcon.style.transform = 'rotate(0deg)';
+            isRotated = false;
+            this.blur();
+            this.size = 0;
+        });
+    });
+}
+
 
 function deleteForm(formCountToDelete) {
     let formContainer = document.getElementById("container-form");
