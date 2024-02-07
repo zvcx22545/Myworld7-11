@@ -15,7 +15,7 @@ addform.addEventListener("click",() => {
         newForm.innerHTML = `
         <div class="w-full">
         <div class="grid">
-            <label class="font-bold" for="type">ชิ้นที่${formCount+1}</label>
+            <label class="font-bold" for="type">ชิ้นที่ ${formCount+1}</label>
             <label for="type">ประเภทสินค้า</label>
         </div>
         <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
@@ -72,7 +72,7 @@ function deleteForm(formCountToDelete) {
             form.querySelector("label[for='Price-" + i + "']").textContent = "ราคา (บาท)";
             form.querySelector("input#Price-" + i).id = "Price-" + (i - 1);
             form.querySelector("select").id = "selectBox-" + (i - 1);
-            form.querySelector("label[for='type']").textContent = "ชิ้นที่" + (i - 1);
+            form.querySelector("label[for='type']").textContent = "ชิ้นที่" +" "+ (i - 1);
         }
     }
 }
