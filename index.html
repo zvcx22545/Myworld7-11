@@ -15,7 +15,7 @@
 
 <body>
     <div class="flex justify-center items-center min-h-screen m-[2rem]">
-        <div class="w-[80%] max-[1180px]:mt-[5rem]">
+        <div class="w-[80%] max-[1180px]:mt-[5rem] min-[1366px]:mt-[10rem]">
             <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]">
             <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[2rem]">
                 <div id="top-contents" class="text-center mb-[1rem]">
@@ -43,12 +43,14 @@
                                     class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
                                     <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
-                                <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box" required>
+                                <select id="selectBox"
+                                    class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
+                                    required>
                                     <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
                                     <option value="option1">Option 1</option>
                                     <option value="option2">Option 2</option>
                                     <option value="option3">Option 3</option>
-                                  </select>
+                                </select>
                             </div>
                         </div>
                         <div class="grid items-end w-full">
@@ -87,9 +89,11 @@
                     <div class="mt-[1rem] flex justify-between gap-[15px] h-[15vh]">
                         <div class="w-[50%]" id="img-preview"></div>
                         <div class="w-[50%] grid items-center">
-                            <label for="upload-img" class=" border-2 border-[#28B7E1] w-full rounded-[6px] py-[5px] text-[#28B7E1]">
+                            <label for="upload-img"
+                                class=" border-2 border-[#28B7E1] w-full rounded-[6px] py-[5px] text-[#28B7E1]">
                                 อัพโหลดรูป
-                                <input type="file" class="absolute opacity-0 cursor-pointer hidden" id="upload-img" required>
+                                <input type="file" class="absolute opacity-0 cursor-pointer hidden" id="upload-img"
+                                    required>
                             </label>
                             <p class="mb-2 text-[#28B7E1] text-left">
                                 Image should be at least 300 x 300 px in PNG or JPG.
@@ -98,28 +102,36 @@
                     </div>
 
                     <div class="mt-[3rem]">
-                        <button type="button"
-                            class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]" id="sent">ยืนยัน</button>
+                        <button type="submit"
+                            class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]"
+                            id="sent">ยืนยัน</button>
                     </div>
                 </form>
 
                 <div class="mt-[2rem] flex justify-center items-start" id="processLoading">
                     <div class="mb-[3rem]">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#24B6E0" class="bi bi-arrow-repeat animate-spin h-[30%] w-[30%] mx-auto mb-[2rem]" viewBox="0 0 16 16">
-                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
-                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
-                                
-                            </svg>
-                            <h1>กำลังดำเนินการ.....</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#24B6E0"
+                            class="bi bi-arrow-repeat animate-spin h-[30%] w-[30%] mx-auto mb-[2rem]"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9" />
+                            <path fill-rule="evenodd"
+                                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z" />
+
+                        </svg>
+                        <h1>กำลังดำเนินการ.....</h1>
                     </div>
                 </div>
 
                 <div class="mt-[2rem] flex justify-center items-start" id="success">
                     <div class="mb-[3rem]">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#05B917" class="bi bi-check-circle-fill h-[30%] w-[30%] mx-auto mb-[2rem] animate-bounce" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                          </svg>
-                            <h1>ลงทะเบียนสำเร็จ<br>คุณได้ทำการสะสมแต้มให้ทางลูกค้า</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#05B917"
+                            class="bi bi-check-circle-fill h-[30%] w-[30%] mx-auto mb-[2rem] animate-bounce"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
+                        <h1>ลงทะเบียนสำเร็จ<br>คุณได้ทำการสะสมแต้มให้ทางลูกค้า</h1>
                     </div>
                 </div>
 
@@ -133,10 +145,9 @@
 <!-- ------------------------Script---------------------------- -->
 <script src="./static/js/Script.js"></script>
 <script src="./static/js/Add-form.js"></script>
-<script  src="/static/js/hideAndseek.js" ></script>
-<script  src="/static/js/img-preview.js" ></script>
+<script src="/static/js/hideAndseek.js"></script>
+<script src="/static/js/img-preview.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 
 </html>
