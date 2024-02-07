@@ -10,7 +10,7 @@ $(document).ready(function() {
       let fileInput = document.getElementById('upload-img');
       if (fileInput.files.length > 0) {
         let file = fileInput.files[0];
-        formData.append('image', file);
+        formData.append("file", fileInput.files[0]);
       }
   
       // Define AJAX settings

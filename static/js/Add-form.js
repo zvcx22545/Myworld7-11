@@ -22,6 +22,7 @@ addform.addEventListener("click",() => {
             <!-- Adjust this div to use flex and justify-between for alignment -->
             <div
                 class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+                <span  class="me-auto selectedOption">กรุณาเลือกประเภทสินค้า</span>
                 <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
             </div>
             <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
@@ -48,9 +49,7 @@ addform.addEventListener("click",() => {
       `;
       newForm.id = "container-form-" + formCount; // Update ID of the new form section
       formContainer.appendChild(newForm);
-      document.getElementById(selectBoxId).addEventListener('change', function() {
-        console.log('Selected value:', this.value); // Log or handle the selected value
-    });
+      showoption();
       assignEventListeners();
       formCount++;
       value2++;
@@ -59,6 +58,17 @@ addform.addEventListener("click",() => {
     //   formCount++;
     //   } 
 });
+
+function showoption() {
+    document.querySelectorAll('.select-Box').forEach(function(selectBox) {
+        selectBox.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex].textContent;
+            this.parentNode.querySelector('.selectedOption').textContent = selectedOption;
+        });
+    });
+}
+
+
 
 
 function assignEventListeners() {

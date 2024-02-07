@@ -33,3 +33,10 @@ document.querySelectorAll('.select-Box').forEach(function(selectBox) {
     this.size = 0; // Reset size to default to close the dropdown
   });
 });
+
+const selectBox = document.getElementById('selectBox');
+    const selectedOption = document.getElementById('selectedOption');
+
+    selectBox.addEventListener('change', function() {
+        selectedOption.textContent = this.options[this.selectedIndex].textContent;
+    });
