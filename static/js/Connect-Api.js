@@ -1,73 +1,84 @@
 $(document).ready(function() {
-    
-  
+  // Initial API calls to populate dropdowns
+  // (Your GetProduct and GetAdmin AJAX calls here)
 
-  $('#form-submit').submit(function(event) {
+  // Form submission handler
+  $("#form-submit").on("submit", function(e) {
+      e.preventDefault(); // Prevent default form submission
 
-      // Prevent the default form submission behavior
-      event.preventDefault();
-  
-      // Get the form data
-      let formData = new FormData(this);
-      var settings = {
-        "url": "https://games.myworld-store.com/api-dev//orders/shopTransaction",
-        "method": "POST",
-        "timeout": 0,
-        "headers": {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
-        },
-        "data": JSON.stringify({
-          "phone": "0983031004",
-          "admin_id": "9aff03e2-8bb8-40a2-a8e3-8478e1d5553b",
-          "slip_image_url": imageUrl,
-          "products": [
-            {
-              "id": "1003928433",
-              "price": 130
-            }
-          ]
-        }),
-      };
-      
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-      });
-  
-      // Make sure to append the image file to the FormData object if it exists
+      // Collect user input
+      let phone = $("#Telephone").val();
+      let productId = $("#selectBox").val(); // Assuming this is how you get the selected product ID
+      let adminId = $("#sellerSelectBox").val(); // Assuming this is how you get the selected admin ID
+      let Price = $("#Price").val(); // Assuming this is how you get the selected admin ID
+      let imageUrl = null; // This will hold the URL after image upload
+
+      // Check if image is selected for upload
       let fileInput = document.getElementById('upload-img');
       if (fileInput.files.length > 0) {
-        let file = fileInput.files[0];
-        formData.append("file", fileInput.files[0]);
+          let formData = new FormData();
+          formData.append("file", fileInput.files[0]);
+
+          // Image Upload AJAX call
+          $.ajax({
+              url: 'https://games.myworld-store.com/api/upload/file',
+              method: 'POST',
+              headers: {
+                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0'
+              },
+              processData: false,
+              contentType: false,
+              mimeType: 'multipart/form-data',
+              data: formData,
+              success: function(response) {
+                  imageUrl = response.url; // Assuming response contains the URL in this property
+                  // Now proceed to submit form data including the image URL
+                  submitFormData(phone, productId, adminId,Price, imageUrl,);
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                  console.error('Error uploading image:', textStatus, errorThrown);
+              }
+          });
+      } else {
+          // No image to upload, proceed to submit form data
+          submitFormData(phone, productId, adminId,Price, imageUrl);
       }
-      let imageUrl = null
-      // Define AJAX settings
-      let UploadFile = {
-        url: 'https://games.myworld-store.com/api/upload/file',
-        method: 'POST',
-        timeout: 0,
-        headers: {
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0'
-        },
-        processData: false,
-        contentType: false,
-        mimeType: 'multipart/form-data',
-        data: formData
-      };
-  
-      // Make AJAX request
-      $.ajax(UploadFile)
-        .done(function(response) {
-          // Handle the API response
-          console.log(response);
-          imageUrl = response.url
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-          // Handle errors
-          console.error('Error:', textStatus, errorThrown);
-        });
-    });
   });
+
+  function submitFormData(phone, productId, adminId,Price, imageUrl) {
+      // Prepare data for Submitform API
+      let data = {
+          phone: phone,
+          admin_id: adminId,
+          slip_image_url: imageUrl,
+          products: [
+              {
+                  id: productId,
+                  price: Price // This should be dynamically set based on selected product
+              }
+          ]
+      };
+
+      // Submitform API AJAX call
+      $.ajax({
+          url: "https://games.myworld-store.com/api-dev//orders/shopTransaction",
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
+          },
+          data: JSON.stringify(data),
+          success: function(response) {
+              console.log('Form submitted successfully:', response);
+              // Handle success, maybe show a success message or redirect
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.error('Error submitting form:', textStatus, errorThrown);
+              // Handle error
+          }
+      });
+  }
+});
   
   var GetProduct = {
     url: "https://games.myworld-store.com/api-dev//options/product",
