@@ -9,6 +9,7 @@ addform.addEventListener("click",() => {
         let formContainer = document.getElementById("container-form");
         let newForm = document.createElement("div");
         newForm.classList.add('container-form')
+        let selectBoxId = `selectBox-${formCount}`;
         // formCount++;
 
         newForm.innerHTML = `
@@ -21,10 +22,12 @@ addform.addEventListener("click",() => {
             <!-- Adjust this div to use flex and justify-between for alignment -->
             <div
                 class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+                <span  class="me-auto selectedOption">กรุณาเลือกประเภทสินค้า</span>
                 <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
             </div>
-            <select id="selectBox-${formCount}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
+            <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
                 required>
+                <div id="selectedValueDisplay"></div>
                 <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
                 <option value="option-${formCount+1}">Option ${formCount+1}</option>
                 <option value="option-${value2+1}">Option ${value2+1}</option>
@@ -46,13 +49,27 @@ addform.addEventListener("click",() => {
       `;
       newForm.id = "container-form-" + formCount; // Update ID of the new form section
       formContainer.appendChild(newForm);
+      showoption();
       assignEventListeners();
       formCount++;
       value2++;
       value3++;
+      // Assuming you're dynamically creating the select options with JS
     //   formCount++;
     //   } 
 });
+
+function showoption() {
+    document.querySelectorAll('.select-Box').forEach(function(selectBox) {
+        selectBox.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex].textContent;
+            this.parentNode.querySelector('.selectedOption').textContent = selectedOption;
+        });
+    });
+}
+
+
+
 
 function assignEventListeners() {
     document.querySelectorAll('.select-Box').forEach(function(selectBox) {
