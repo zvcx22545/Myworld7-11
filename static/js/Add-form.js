@@ -1,12 +1,22 @@
 function showAlert(title, text, icon) {
     Swal.fire({
-      title: title,
-      text: text,
-      icon: icon || "error",
-      confirmButtonText: "ตกลง",
-      
-    });
-  }
+        title: title,
+        text: text,
+        icon: icon || "error",
+        confirmButtonText: "ตกลง",
+        allowOutsideClick: true, // อนุญาตให้คลิกภายนอกเพื่อปิด modal
+        showLoaderOnConfirm: true, // แสดง animation ในระหว่างกดปุ่มตกลง
+        preConfirm: () => {
+          // สมมติว่ามีการประมวลผลบางอย่าง (เช่น การร้องขอ AJAX)
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000); // ประมาณ 2 วินาที
+          });
+        },
+      })
+}
+
 
 let formCount = 1; // Start with one form
 let value2 = 2;
