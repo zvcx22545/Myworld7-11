@@ -12,8 +12,8 @@ uploadImgInput.addEventListener('change', (event) => {
             img.src = e.target.result;
 
             img.onload = () => {
-                const maxWidth = 100;
-                const maxHeight = 100;
+                const maxWidth = 150;
+                const maxHeight = 150;
 
                 const width = img.width;
                 const height = img.height;
@@ -35,7 +35,7 @@ uploadImgInput.addEventListener('change', (event) => {
 
                 imgPreview.style.backgroundImage = `url(${e.target.result})`;
                 imgPreview.style.backgroundSize = `${newWidth}px ${newHeight}px`;
-                imgPreview.style.backgroundPosition = 'center';
+                imgPreview.style.backgroundPosition = 'top';
                 imgPreview.style.backgroundRepeat = 'no-repeat';
                 imgPreview.textContent = ''; // Clear the default text
 
