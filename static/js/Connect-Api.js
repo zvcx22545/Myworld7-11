@@ -88,7 +88,37 @@ $.ajax(GetProduct)
 
         // Add options fetched from API
         response.forEach(function (option) {
-            $("#selectBox").append('<option value="' + option.id + '">' + option.name + '</option>');
+          var displayName = option.name.length > 12 ? option.name.slice(0, 20) + '...' : option.name;
+          $("#selectBox").append('<option value="' + option.id + '">' + displayName + '</option>');
+          
+        });
+    })
+    .fail(function (xhr, status, error) {
+        console.error("Error fetching products:", error);
+    });
+
+
+    var Getadmin = {
+      "url": "https://games.myworld-store.com/api-dev//options/admin",
+      "method": "GET",
+      "timeout": 0,
+      "headers": {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
+      },
+    };
+    
+    $.ajax(Getadmin)
+    .done(function (response) {
+        // Clear previous options
+        $("#sellerSelectBox").empty();
+
+        // Add default option
+        $("#sellerSelectBox").append('<option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>');
+
+        // Add options fetched from API
+        response.forEach(function (optionAdmin) {
+            $("#sellerSelectBox").append('<option value="' + optionAdmin.admin_id + '">' + optionAdmin.name + '</option>');
+
         });
     })
     .fail(function (xhr, status, error) {
