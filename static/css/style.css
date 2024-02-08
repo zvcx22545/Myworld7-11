@@ -32,5 +32,5 @@ body{
 
 label,p
 {
-   font-size: clamp(0.75rem, 0.6364rem + 0.303vw, 1rem);
+   font-size: clamp(0.875rem, 0.8182rem + 0.1515vw, 1rem);
 }
