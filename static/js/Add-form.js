@@ -42,7 +42,7 @@ addform.addEventListener("click", () => {
         data.forEach(option => {
             let optionElement = document.createElement("option");
             optionElement.value = option.id;
-            optionElement.textContent = option.name;
+            optionElement.textContent = option.name.length > 13 ? option.name.slice(0, 13) + "..." : option.name;
             document.getElementById(selectBoxId).appendChild(optionElement);
             console.log(optionElement.value)
         });
