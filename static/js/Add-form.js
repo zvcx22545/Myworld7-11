@@ -185,8 +185,11 @@ function deleteForm(formCountToDelete) {
   }
 }
 
+    const selectedOptionElement = document.getElementById('selectedOption1');
+    const sellerSelectBox = document.getElementById('sellerSelectBox');
 
-// <option value="option-${formCount + 1}">Option ${formCount + 1 }</option>
-//                 <option value="option-${value2 + 1}">Option ${value2 + 1}</option>
-//                 <option value="option-${value3 + 1}">Option ${
-//     value3 + 1
+    sellerSelectBox.addEventListener('change', function() {
+        const selectedOptionIndex = sellerSelectBox.selectedIndex;
+        const selectedOptionText = sellerSelectBox.options[selectedOptionIndex].text;
+        selectedOptionElement.textContent = selectedOptionText;
+    });
