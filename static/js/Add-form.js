@@ -163,11 +163,27 @@ function deleteForm(formCountToDelete) {
     }
 }
 
-    const selectedOptionElement = document.getElementById('selectedOption1');
-    const sellerSelectBox = document.getElementById('sellerSelectBox');
+const selectedOptionElement = document.getElementById('selectedOption');
+const sellerSelectBox = document.getElementById('selectBox');
+const selectedOptionElement1 = document.getElementById('selectedOption1');
+const sellerSelectBox1 = document.getElementById('sellerSelectBox');
 
-    sellerSelectBox.addEventListener('change', function() {
-        const selectedOptionIndex = sellerSelectBox.selectedIndex;
-        const selectedOptionText = sellerSelectBox.options[selectedOptionIndex].text;
+sellerSelectBox.addEventListener('change', function() {
+    const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
+    
+    if (selectedOptionText.length > 10) {
+        selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
+    } else {
         selectedOptionElement.textContent = selectedOptionText;
-    });
+    }
+});
+
+sellerSelectBox1.addEventListener('change', function() {
+    const selectedOptionText = sellerSelectBox1.options[sellerSelectBox1.selectedIndex].text;
+    
+    if (selectedOptionText.length > 10) {
+        selectedOptionElement1.textContent = selectedOptionText.slice(0, 10) + "...";
+    } else {
+        selectedOptionElement1.textContent = selectedOptionText;
+    }
+});
