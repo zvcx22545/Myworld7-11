@@ -29,3 +29,8 @@ body{
    gap: 15px;
    margin-top: 10px;
 }
+
+label,p
+{
+   font-size: clamp(0.75rem, 0.6364rem + 0.303vw, 1rem);
+}

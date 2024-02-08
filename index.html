@@ -15,7 +15,7 @@
 
 <body>
     <div class="flex justify-center items-center min-h-screen m-[2rem] ">
-        <div class="w-[80%] max-[1180px]:mt-[5rem]">
+        <div class="w-[80%] max-[]:w-[100%] max-[1180px]:mt-[5rem] min-[1366px]:mt-[10rem] 2xl:mt-[11.5rem]">
             <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]">
             <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[2rem]">
                 <div id="top-contents" class="text-center mb-[1rem]">
@@ -41,7 +41,7 @@
                                 <!-- Adjust this div to use flex and justify-between for alignment -->
                                 <div
                                     class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
-                                    <span id="selectedOption" class="me-auto">กรุณาเลือกประเภทสินค้า</span>
+                                    <p id="selectedOption" class="me-auto"></p>
                                     <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="selectBox"
