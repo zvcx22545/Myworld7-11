@@ -42,9 +42,16 @@ addform.addEventListener("click", () => {
         data.forEach(option => {
             let optionElement = document.createElement("option");
             optionElement.value = option.id;
-            optionElement.textContent = option.name.length > 13 ? option.name.slice(0, 13) + "..." : option.name;
+            
+            if (window.innerWidth <= 430) {
+                optionElement.textContent = option.name.length > 8 ? option.name.slice(0, 8) + "..." : option.name;
+            } else {
+                optionElement.textContent = option.name;
+            }
+            
             document.getElementById(selectBoxId).appendChild(optionElement);
-            console.log(optionElement.value)
+            console.log(optionElement.value);
+            
         });
     })
     .catch(error => {
@@ -67,7 +74,7 @@ addform.addEventListener("click", () => {
             <!-- Adjust this div to use flex and justify-between for alignment -->
             <div
                 class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
-                <span id="selectedOption" class="me-auto selectedOption">My beer</span>
+                <span class="me-auto selectedOption">My beer</span>
                 <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
             </div>
             <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
