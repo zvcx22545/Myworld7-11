@@ -29,6 +29,27 @@ let value3 = 3;
 
 const addform = document.getElementById("add-form");
 addform.addEventListener("click", () => {
+
+  fetch("https://games.myworld-store.com/api-dev//options/product", {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Loop through the data and create option elements
+        data.forEach(option => {
+            let optionElement = document.createElement("option");
+            optionElement.value = option.id;
+            optionElement.textContent = option.name;
+            document.getElementById(selectBoxId).appendChild(optionElement);
+            console.log(optionElement.value)
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching options:', error);
+    });
   // if (formCount) {
   let formContainer = document.getElementById("container-form");
   let newForm = document.createElement("div");
@@ -53,10 +74,7 @@ addform.addEventListener("click", () => {
                 required>
                 <div id="selectedValueDisplay"></div>
                 <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
-                <option value="option-${formCount + 1}">Option ${formCount + 1 }</option>
-                <option value="option-${value2 + 1}">Option ${value2 + 1}</option>
-                <option value="option-${value3 + 1}">Option ${
-    value3 + 1
+                
   }</option>
             </select>
         </div>
@@ -166,3 +184,9 @@ function deleteForm(formCountToDelete) {
     }
   }
 }
+
+
+// <option value="option-${formCount + 1}">Option ${formCount + 1 }</option>
+//                 <option value="option-${value2 + 1}">Option ${value2 + 1}</option>
+//                 <option value="option-${value3 + 1}">Option ${
+//     value3 + 1
