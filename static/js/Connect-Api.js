@@ -36,7 +36,7 @@ $(document).ready(function() {
       formData.append("file", fileInput.files[0]);
 
       // Adjusted Image Upload AJAX call
-      let Geturlimage = {
+      let settings = {
           "url": "https://games.myworld-store.com/api-dev//upload/file",
           "method": "POST",
           "timeout": 0,
@@ -46,7 +46,7 @@ $(document).ready(function() {
           "data": formData
       };
 
-      $.ajax(Geturlimage).done(function (response) {
+      $.ajax(settings).done(function (response) {
           // Assuming the response is JSON and contains a property named 'url'
           let jsonResponse = JSON.parse(response); // Parse the response as JSON
           imageUrl = jsonResponse.url; // Extract the image URL
@@ -63,6 +63,8 @@ $(document).ready(function() {
         submitFormData(phone, adminId, products, imageUrl);
     }
 });
+
+
 
 function submitFormData(phone, adminId, products, imageUrl) {
     // Prepare data for Submitform API
@@ -84,6 +86,8 @@ function submitFormData(phone, adminId, products, imageUrl) {
         data: JSON.stringify(data),
         success: function(response) {
             console.log('Form submitted successfully:', response);
+            SuccessOnSubmit();
+            
             // Handle success, maybe show a success message or redirect
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -92,6 +96,61 @@ function submitFormData(phone, adminId, products, imageUrl) {
         }
     });
 }
+
+const SuccessOnSubmit = () => {
+  const processLoading = document.getElementById('processLoading');
+    const successDiv = document.getElementById('success');
+    const closeBTN = document.getElementById('closeSuccess');
+    const form = document.getElementById('form-submit');
+    const top = document.getElementById('top-contents');
+    const sentButton = document.getElementById('sent'); // Ensure this button exists in your HTML
+
+    // Immediately show loading, hide form and top contents
+    processLoading.style.display = 'flex';
+    form.style.display = 'none';
+    top.style.display = 'none';
+
+    // After a delay (e.g., simulating processing time or waiting for a background task)
+    setTimeout(() => {
+        // Hide loading, show success message and the close button
+        processLoading.style.display = 'none';
+        successDiv.style.display = 'block';
+        closeBTN.style.display = 'flex'; // 'none' followed by 'flex' seems redundant, just set to 'flex'
+
+        // Countdown and potential page reload logic here
+        var countdown = 3; 
+        var countdownButton = document.getElementById("countdownButton");
+        countdownButton.innerText = "( " + countdown + " ) ปิด";
+
+        var countdownInterval = setInterval(function () {
+            countdown--;
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                countdownButton.innerText = "เสร็จสิ้น";
+                setTimeout(function () {
+                    location.reload(); // Or redirect as needed
+                }, 1000);
+            } else {
+                countdownButton.innerText = "( " + countdown + " ) ปิด";
+            }
+        }, 1000);
+    }, 5000);
+}
+
+const paymentValue = (Paymentinput) => {
+  let paymentInput = document.getElementById(Paymentinput);
+  if (paymentInput.files.length > 0) {
+    console.log("Payment is successfuly")
+  } else {
+    showAlert("แจ้งเตือน!", "กรุณาอัพโหลดสลิปชำระเงิน", "error");
+  }
+};
+
+let checkPayment = document.getElementById("sent"); // Corrected variable name
+checkPayment.addEventListener("click", function () {
+  paymentValue("upload-img");
+});
+
 
 
 });
@@ -140,7 +199,7 @@ $.ajax(GetProduct)
         $("#sellerSelectBox").empty();
 
         // Add default option
-        $("#sellerSelectBox").append('<option value="" disabled selected>ผู้ขายสินค้า</option>');
+        $("#sellerSelectBox").append('<option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>');
 
         // Add options fetched from API
         response.forEach(function (optionAdmin) {

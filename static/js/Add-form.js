@@ -50,7 +50,7 @@ addform.addEventListener("click", () => {
             }
             
             document.getElementById(selectBoxId).appendChild(optionElement);
-            console.log(optionElement.value);
+            // console.log(optionElement.value);
             
         });
     })
