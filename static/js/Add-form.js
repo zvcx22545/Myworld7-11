@@ -112,8 +112,7 @@ function showoption() {
   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
     selectBox.addEventListener("change", function () {
       const selectedOption = this.options[this.selectedIndex].textContent;
-      this.parentNode.querySelector(".selectedOption").textContent =
-        selectedOption;
+      this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
     });
   });
 }
@@ -185,27 +184,50 @@ function deleteForm(formCountToDelete) {
   }
 }
 
-const selectedOptionElement = document.getElementById('selectedOption');
-const sellerSelectBox = document.getElementById('selectBox');
-const selectedOptionElement1 = document.getElementById('selectedOption1');
-const sellerSelectBox1 = document.getElementById('sellerSelectBox');
+document.addEventListener('DOMContentLoaded', function () {
+    const selectedOptionElement = document.getElementById('selectedOption');
+    const sellerSelectBox = document.getElementById('selectBox');
+    const selectedOptionElement1 = document.getElementById('selectedOption1');
+    const sellerSelectBox1 = document.getElementById('sellerSelectBox');
 
-sellerSelectBox.addEventListener('change', function() {
-    const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
-    
-    if (selectedOptionText.length > 10) {
-        selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
-    } else {
-        selectedOptionElement.textContent = selectedOptionText;
-    }
-});
+    function updateSelectedOption1(selectedOptionElement, sellerSelectBox) {
+        const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
 
-sellerSelectBox1.addEventListener('change', function() {
-    const selectedOptionText = sellerSelectBox1.options[sellerSelectBox1.selectedIndex].text;
-    
-    if (selectedOptionText.length > 10) {
-        selectedOptionElement1.textContent = selectedOptionText.slice(0, 10) + "...";
-    } else {
-        selectedOptionElement1.textContent = selectedOptionText;
+        if (selectedOptionText.length > 10) {
+            selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
+        } else {
+            selectedOptionElement.textContent = selectedOptionText;
+        }
     }
+
+    function updateSelectedOption2(selectedOptionElement, sellerSelectBox) {
+        const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
+
+        if (selectedOptionText.length > 10) {
+            selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
+        } else {
+            selectedOptionElement.textContent = selectedOptionText;
+        }
+    }
+
+    function handleResize() {
+        if (window.innerWidth <= 430) {
+            updateSelectedOption1(selectedOptionElement, sellerSelectBox);
+            updateSelectedOption2(selectedOptionElement1, sellerSelectBox1);
+
+            sellerSelectBox.addEventListener('change', function () {
+                updateSelectedOption1(selectedOptionElement, sellerSelectBox);
+            });
+
+            sellerSelectBox1.addEventListener('change', function () {
+                updateSelectedOption2(selectedOptionElement1, sellerSelectBox1);
+            });
+        } else {
+            sellerSelectBox.removeEventListener('change', updateSelectedOption1);
+            sellerSelectBox1.removeEventListener('change', updateSelectedOption2);
+        }
+    }
+
+    window.addEventListener('load', handleResize);
+    window.addEventListener('resize', handleResize);
 });
