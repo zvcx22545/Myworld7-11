@@ -1,22 +1,27 @@
 function showAlert(title, text, icon) {
-    Swal.fire({
-        title: title,
-        text: text,
-        icon: icon || "error",
-        confirmButtonText: "ตกลง",
-        allowOutsideClick: true, // อนุญาตให้คลิกภายนอกเพื่อปิด modal
-        showLoaderOnConfirm: true, // แสดง animation ในระหว่างกดปุ่มตกลง
-        preConfirm: () => {
-          // สมมติว่ามีการประมวลผลบางอย่าง (เช่น การร้องขอ AJAX)
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-            }, 1000); // ประมาณ 2 วินาที
-          });
-        },
-      })
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon || "error",
+    confirmButtonText: "ตกลง",
+    allowOutsideClick: true, // อนุญาตให้คลิกภายนอกเพื่อปิด modal
+    showLoaderOnConfirm: true, // แสดง animation ในระหว่างกดปุ่มตกลง
+    // backdrop: `
+    // rgba(0,0,123,0.4)
+    // url("https://www.icegif.com/wp-content/uploads/2023/01/icegif-85.gif")
+    // no-repeat
+    // center top
+    // `,
+    preConfirm: () => {
+      // สมมติว่ามีการประมวลผลบางอย่าง (เช่น การร้องขอ AJAX)
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000); // ประมาณ 2 วินาที
+      });
+    },
+  });
 }
-
 
 let formCount = 1; // Start with one form
 let value2 = 2;
@@ -24,14 +29,14 @@ let value3 = 3;
 
 const addform = document.getElementById("add-form");
 addform.addEventListener("click", () => {
-    // if (formCount) {
-    let formContainer = document.getElementById("container-form");
-    let newForm = document.createElement("div");
-    newForm.classList.add("container-form");
-    let selectBoxId = `selectBox-${formCount}`;
-    // formCount++;
+  // if (formCount) {
+  let formContainer = document.getElementById("container-form");
+  let newForm = document.createElement("div");
+  newForm.classList.add("container-form");
+  let selectBoxId = `selectBox-${formCount}`;
+  // formCount++;
 
-    newForm.innerHTML = `
+  newForm.innerHTML = `
         <div class="w-full">
         <div class="grid">
             <label class="font-bold" for="type">ชิ้นที่ ${formCount + 1}</label>
@@ -48,12 +53,11 @@ addform.addEventListener("click", () => {
                 required>
                 <div id="selectedValueDisplay"></div>
                 <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
-                <option value="option-${formCount + 1}">Option ${formCount + 1
-        }</option>
-                <option value="option-${value2 + 1}">Option ${value2 + 1
-        }</option>
-                <option value="option-${value3 + 1}">Option ${value3 + 1
-        }</option>
+                <option value="option-${formCount + 1}">Option ${formCount + 1 }</option>
+                <option value="option-${value2 + 1}">Option ${value2 + 1}</option>
+                <option value="option-${value3 + 1}">Option ${
+    value3 + 1
+  }</option>
             </select>
         </div>
     </div>
@@ -69,96 +73,96 @@ addform.addEventListener("click", () => {
         <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] Price" type="text" id="Price-${formCount}" required>
     </div>
       `;
-    newForm.id = "container-form-" + formCount; // Update ID of the new form section
-    formContainer.appendChild(newForm);
-    showoption();
-    assignEventListeners();
-    let inputElements = document.querySelectorAll(".Price");
-    // Loop through each input element and attach the event listener
-    inputElements.forEach(function (inputElement) {
-        inputElement.addEventListener("keypress", Blockcharater);
-    });
-    formCount++;
-    value2++;
-    value3++;
-    // Assuming you're dynamically creating the select options with JS
-    //   formCount++;
-    //   }
+  newForm.id = "container-form-" + formCount; // Update ID of the new form section
+  formContainer.appendChild(newForm);
+  showoption();
+  assignEventListeners();
+  let inputElements = document.querySelectorAll(".Price");
+  // Loop through each input element and attach the event listener
+  inputElements.forEach(function (inputElement) {
+    inputElement.addEventListener("keypress", Blockcharater);
+  });
+  formCount++;
+  value2++;
+  value3++;
+  // Assuming you're dynamically creating the select options with JS
+  //   formCount++;
+  //   }
 });
 
 function showoption() {
-    document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-        selectBox.addEventListener("change", function () {
-            const selectedOption = this.options[this.selectedIndex].textContent;
-            this.parentNode.querySelector(".selectedOption").textContent =
-                selectedOption;
-        });
+  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+    selectBox.addEventListener("change", function () {
+      const selectedOption = this.options[this.selectedIndex].textContent;
+      this.parentNode.querySelector(".selectedOption").textContent =
+        selectedOption;
     });
+  });
 }
 
 function assignEventListeners() {
-    document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-        selectBox.addEventListener("click", function (event) {
-            event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
-            const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-            if (!isRotated) {
-                angleIcon.style.transform = "rotate(180deg)";
-                isRotated = true;
-            } else {
-                angleIcon.style.transform = "rotate(0deg)";
-                isRotated = false;
-            }
+  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+    selectBox.addEventListener("click", function (event) {
+      event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
+      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      if (!isRotated) {
+        angleIcon.style.transform = "rotate(180deg)";
+        isRotated = true;
+      } else {
+        angleIcon.style.transform = "rotate(0deg)";
+        isRotated = false;
+      }
 
-            if (!isRotated) this.size = 1;
-        });
-
-        selectBox.addEventListener("change", function () {
-            const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-            angleIcon.style.transform = "rotate(0deg)";
-            isRotated = false;
-            this.blur();
-            this.size = 0;
-        });
+      if (!isRotated) this.size = 1;
     });
+
+    selectBox.addEventListener("change", function () {
+      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      angleIcon.style.transform = "rotate(0deg)";
+      isRotated = false;
+      this.blur();
+      this.size = 0;
+    });
+  });
 }
 
 // Block character function
 function Blockcharater(event) {
-    var regex = /^\d+$/; // Regular expression to match only numbers
-    if (!regex.test(event.key)) {
-        event.preventDefault(); // Prevent non-numeric characters
-        showAlert("แจ้งเดือน!", "สามารถกรอกตัวเลขได้เท่านั้น!", "error");
-    }
+  var regex = /^\d+$/; // Regular expression to match only numbers
+  if (!regex.test(event.key)) {
+    event.preventDefault(); // Prevent non-numeric characters
+    showAlert("แจ้งเดือน!", "สามารถกรอกตัวเลขได้เท่านั้น!", "error");
+  }
 }
 
 let inputElements = document.querySelectorAll(".Price");
-    // Loop through each input element and attach the event listener
-    inputElements.forEach(function (inputElement) {
-        inputElement.addEventListener("keypress", Blockcharater);
-    });
+// Loop through each input element and attach the event listener
+inputElements.forEach(function (inputElement) {
+  inputElement.addEventListener("keypress", Blockcharater);
+});
 
 // Delete Funtion
 function deleteForm(formCountToDelete) {
-    let formContainer = document.getElementById("container-form");
-    let formToDelete = document.getElementById(
-        "container-form-" + formCountToDelete
-    );
-    if (formToDelete) {
-        formContainer.removeChild(formToDelete);
-        // ปรับค่า formCount, value2, และ value3 ลดลงตามจำนวนที่ลบ
-        formCount--;
-        value2--;
-        value3--;
-        // อัพเดท id ของฟอร์มที่เหลือให้ถูกต้อง
-        for (let i = formCountToDelete + 1; i <= formCount; i++) {
-            let form = document.getElementById("container-form-" + i);
-            form.id = "container-form-" + (i - 1);
-            form.querySelector("label[for='Price-" + i + "']").textContent =
-                "ราคา (บาท)";
-            form.querySelector("input#Price-" + i).id = "Price-" + (i - 1);
-            form.querySelector("select").id = "selectBox-" + (i - 1);
-            form.querySelector("label[for='type']").textContent =
-                "ชิ้นที่" + " " + (i - 1);
-        }
+  let formContainer = document.getElementById("container-form");
+  let formToDelete = document.getElementById(
+    "container-form-" + formCountToDelete
+  );
+  if (formToDelete) {
+    formContainer.removeChild(formToDelete);
+    // ปรับค่า formCount, value2, และ value3 ลดลงตามจำนวนที่ลบ
+    formCount--;
+    value2--;
+    value3--;
+    // อัพเดท id ของฟอร์มที่เหลือให้ถูกต้อง
+    for (let i = formCountToDelete + 1; i <= formCount; i++) {
+      let form = document.getElementById("container-form-" + i);
+      form.id = "container-form-" + (i - 1);
+      form.querySelector("label[for='Price-" + i + "']").textContent =
+        "ราคา (บาท)";
+      form.querySelector("input#Price-" + i).id = "Price-" + (i - 1);
+      form.querySelector("select").id = "selectBox-" + (i - 1);
+      form.querySelector("label[for='type']").textContent =
+        "ชิ้นที่" + " " + (i - 1);
     }
+  }
 }
