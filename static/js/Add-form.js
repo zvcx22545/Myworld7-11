@@ -162,3 +162,12 @@ function deleteForm(formCountToDelete) {
         }
     }
 }
+
+    const selectedOptionElement = document.getElementById('selectedOption1');
+    const sellerSelectBox = document.getElementById('sellerSelectBox');
+
+    sellerSelectBox.addEventListener('change', function() {
+        const selectedOptionIndex = sellerSelectBox.selectedIndex;
+        const selectedOptionText = sellerSelectBox.options[selectedOptionIndex].text;
+        selectedOptionElement.textContent = selectedOptionText;
+    });
