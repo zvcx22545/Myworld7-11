@@ -193,8 +193,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateSelectedOption1(selectedOptionElement, sellerSelectBox) {
         const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
 
-        if (selectedOptionText.length > 10) {
-            selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
+        if (selectedOptionText.length > 13) {
+            selectedOptionElement.textContent = selectedOptionText.slice(0, 13) + "...";
         } else {
             selectedOptionElement.textContent = selectedOptionText;
         }
@@ -203,8 +203,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateSelectedOption2(selectedOptionElement, sellerSelectBox) {
         const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
 
-        if (selectedOptionText.length > 10) {
-            selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
+        if (selectedOptionText.length > 13) {
+            selectedOptionElement.textContent = selectedOptionText.slice(0, 13) + "...";
         } else {
             selectedOptionElement.textContent = selectedOptionText;
         }

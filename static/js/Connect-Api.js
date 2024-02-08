@@ -113,7 +113,7 @@ $.ajax(GetProduct)
         $("#sellerSelectBox").empty();
 
         // Add default option
-        $("#sellerSelectBox").append('<option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>');
+        $("#sellerSelectBox").append('<option value="" disabled selected>ผู้ขายสินค้า</option>');
 
         // Add options fetched from API
         response.forEach(function (optionAdmin) {
