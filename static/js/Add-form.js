@@ -67,7 +67,7 @@ addform.addEventListener("click", () => {
             <!-- Adjust this div to use flex and justify-between for alignment -->
             <div
                 class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
-                <span  class="me-auto selectedOption">My beer</span>
+                <span id="selectedOption" class="me-auto selectedOption">My beer</span>
                 <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
             </div>
             <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
@@ -91,6 +91,7 @@ addform.addEventListener("click", () => {
         <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] Price" type="text" id="Price-${formCount}" required>
     </div>
       `;
+
   newForm.id = "container-form-" + formCount; // Update ID of the new form section
   formContainer.appendChild(newForm);
   showoption();
@@ -106,6 +107,9 @@ addform.addEventListener("click", () => {
   // Assuming you're dynamically creating the select options with JS
   //   formCount++;
   //   }
+
+  
+
 });
 
 function showoption() {
@@ -193,8 +197,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateSelectedOption1(selectedOptionElement, sellerSelectBox) {
         const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
 
-        if (selectedOptionText.length > 13) {
-            selectedOptionElement.textContent = selectedOptionText.slice(0, 13) + "...";
+        if (selectedOptionText.length > 10) {
+            selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
         } else {
             selectedOptionElement.textContent = selectedOptionText;
         }
