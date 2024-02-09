@@ -15,16 +15,18 @@ $(document).ready(function() {
     // Iterate over all product fields
     $(".container-form").each(function() {
         let productId = $(this).find(".select-Box").val(); // Adjust selector as needed
-        let price = $(this).find(".Price").val(); // Adjust selector as needed
-        if (productId && price) {
+        let price = parseInt($(this).find(".Price").val()); // Adjust selector as needed
+        if (productId && !isNaN(price)) {
             products.push({ id: productId, price: price });
         }
-    });
+    });เ
     if (mainProductId) {
       // Add the main product with its details to the products array
       // You might need to adjust this to include a default price or fetch the price from another input if applicable
-      let mainProductPrice = $("#Price").val(); // Assuming there's a price input for the main product
-      products.push({ id: mainProductId, price: mainProductPrice });
+      let mainProductPrice = parseInt($("#Price").val()); // Assuming there's a price input for the main product
+      if (!isNaN(mainProductPrice)) { // Check if main product price is a valid number
+        products.push({ id: mainProductId, price: mainProductPrice });
+    }
   }
   console.log(products)
 
