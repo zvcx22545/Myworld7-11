@@ -20,6 +20,7 @@ $(document).ready(function() {
             products.push({ id: productId, price: price });
         }
     });
+    
     if (mainProductId) {
       // Add the main product with its details to the products array
       // You might need to adjust this to include a default price or fetch the price from another input if applicable
