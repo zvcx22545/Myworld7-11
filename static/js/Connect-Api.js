@@ -17,7 +17,7 @@ $(document).ready(function() {
         let productId = $(this).find(".select-Box").val(); // Adjust selector as needed
         let price = parseInt($(this).find(".Price").val()); // Adjust selector as needed
         if (productId && !isNaN(price)) {
-            products.push({ id: productId, price: price });
+            products.push({ id: productId, price: price});
         }
     });
     

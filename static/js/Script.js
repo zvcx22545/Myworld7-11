@@ -51,6 +51,5 @@ const selectBox1 = document.getElementById('sellerSelectBox');
 const priceInput = document.getElementById('Price');
 
     priceInput.addEventListener('blur', function(event) {
-        // แสดงทศนิยม 2 ตำแหน่ง
         this.value = parseFloat(this.value).toFixed(2);
     });
