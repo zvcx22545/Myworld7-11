@@ -95,7 +95,7 @@ addform.addEventListener("click", () => {
                 </button>
             </div>
         <label for="Price-${formCount}">ราคา (บาท)</label>
-        <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right step="0.01" Price" type="text" id="Price-${formCount}" required>
+        <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right step="0.01" Price" type="number" id="Price-${formCount}" required>
     </div>
       `;
 
