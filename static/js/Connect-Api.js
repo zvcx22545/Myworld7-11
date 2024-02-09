@@ -19,7 +19,8 @@ $(document).ready(function() {
         if (productId && !isNaN(price)) {
             products.push({ id: productId, price: price });
         }
-    });เ
+    });
+    
     if (mainProductId) {
       // Add the main product with its details to the products array
       // You might need to adjust this to include a default price or fetch the price from another input if applicable
@@ -201,7 +202,7 @@ $.ajax(GetProduct)
         $("#sellerSelectBox").empty();
 
         // Add default option
-        $("#sellerSelectBox").append('<option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>');
+        $("#sellerSelectBox").append('<option value="" disabled selected>ผู้ขายสินค้า</option>');
 
         // Add options fetched from API
         response.forEach(function (optionAdmin) {
