@@ -103,11 +103,13 @@ addform.addEventListener("click", () => {
   formContainer.appendChild(newForm);
   showoption();
   assignEventListeners();
+  
   let inputElements = document.querySelectorAll(".Price");
   // Loop through each input element and attach the event listener
   inputElements.forEach(function (inputElement) {
     inputElement.addEventListener("keypress", Blockcharater);
   });
+  decimalformat();
   formCount++;
   value2++;
   value3++;
@@ -115,9 +117,30 @@ addform.addEventListener("click", () => {
   //   formCount++;
   //   }
 
-  
-
 });
+
+const decimalformat = () => {
+  const Pricedecumal = document.querySelectorAll('.Price'); // Note the '.' before 'Price' to select elements with the class 'Price'
+
+  // Loop through each element in the NodeList
+  Pricedecumal.forEach(function(input) {
+      // Add blur event listener to each input element
+      input.addEventListener('blur', function(event) {
+          // Format the input value with commas for thousands separators and two decimal places
+          if (this.value.trim() !== "") { // Check if the value is not empty after trimming whitespace
+              let numericValue = parseFloat(this.value.replace(/,/g, "")); // Remove commas before parsing
+              if (!isNaN(numericValue)) { // Check if the parsed numeric value is not NaN
+                  this.value = numericValue.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              } else {
+                  this.value = ""; // Reset the value to empty if parsing fails
+              }
+          }
+      });
+  });
+}
+
+
+
 
 function showoption() {
   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
