@@ -43,11 +43,11 @@ addform.addEventListener("click", () => {
             let optionElement = document.createElement("option");
             optionElement.value = option.id;
             
-            if (window.innerWidth <= 430) {
-                optionElement.textContent = option.name.length > 8 ? option.name.slice(0, 8) + "..." : option.name;
-            } else {
+            // if (window.innerWidth <= 430) {
+            //     optionElement.textContent = option.name.length > 8 ? option.name.slice(0, 8) + "..." : option.name;
+            // } else {
                 optionElement.textContent = option.name;
-            }
+            // }
             
             document.getElementById(selectBoxId).appendChild(optionElement);
             // console.log(optionElement.value);
@@ -122,11 +122,21 @@ addform.addEventListener("click", () => {
 function showoption() {
   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
     selectBox.addEventListener("change", function () {
-      const selectedOption = this.options[this.selectedIndex].textContent;
+      let selectedOption = this.options[this.selectedIndex].textContent;
+
+      // Check if the selected option text length is more than 15 characters
+      if (selectedOption.length > 10) {
+        // Slice the string to only include characters from the 13th to the 15th position
+        // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
+        // Adjust the start index and end index as needed
+        selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
+      }
+
       this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
     });
   });
 }
+
 
 function assignEventListeners() {
   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
