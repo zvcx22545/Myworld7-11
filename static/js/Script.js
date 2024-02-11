@@ -1,36 +1,83 @@
 let isRotated = false; // Track the rotation state
+function toggleDropdown() {
 
-document.querySelectorAll('.select-Box').forEach(function(selectBox) {
-  // Attach click event listener to each select element
-  selectBox.addEventListener('click', function(event) {
-    // Prevent the default action to manually control the rotation
-    event.preventDefault();
+  var selectBox = document.getElementById('selectBox');
+  var angleIcon = document.getElementById('angleIcon');
 
-    const angleIcon = this.parentElement.querySelector('.fas.fa-angle-down'); // Select the icon within the same container
-
-    if (!isRotated) {
-      // Rotate 180 degrees
+  if (selectBox.classList.contains('hidden')) {
+      selectBox.classList.remove('hidden');
+      selectBox.size = selectBox.length;
       angleIcon.style.transform = 'rotate(180deg)';
-      isRotated = true;
-    } else {
-      // Rotate back to 0 degrees
-      angleIcon.style.transform = 'rotate(0deg)';
-      isRotated = false;
-    }
+      document.addEventListener('click', closeDropdownOutside);
+  } else {
+      hideDropdown();
+  }
+}
 
-    // Manually trigger the native click action if not rotated
-    if (!isRotated) this.size = 1; // Hack to trigger the dropdown
-  });
+function hideDropdown() {
+  var selectBox = document.getElementById('selectBox');
+  var angleIcon = document.getElementById('angleIcon');
 
-  // Attach change event listener to each select element
-  selectBox.addEventListener("change", function () {
-    const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-    // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
-    angleIcon.style.transform = "rotate(0deg)";
-    // อัพเดตสถานะการหมุนใน dataset
-    this.dataset.isRotated = "false";
-  });
-});
+  selectBox.classList.add('hidden');
+  angleIcon.style.transform = 'rotate(0deg)';
+  document.removeEventListener('click', closeDropdownOutside);
+}
+
+function updateSelectedOption() {
+  var selectBox = document.getElementById('selectBox');
+  var selectedOption = document.getElementById('selectedOption');
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
+  hideDropdown();
+}
+
+function closeDropdownOutside(event) {
+  var selectBox = document.getElementById('selectBox');
+  var angleIcon = document.getElementById('angleIcon');
+
+  if (!event.target.closest('.select-wrapper')) {
+      hideDropdown();
+  }
+}
+
+
+function toggleDropdown1() {
+  var selectBox = document.getElementById('sellerSelectBox');
+  var angleIcon1 = document.getElementById('angleIcon1');
+
+  if (selectBox.classList.contains('hidden')) {
+      selectBox.classList.remove('hidden');
+      selectBox.size = selectBox.length;
+      angleIcon1.style.transform = 'rotate(180deg)';
+      document.addEventListener('click', closeDropdownOutside1);
+  } else {
+      hideDropdown1();
+  }
+}
+
+function hideDropdown1() {
+  var selectBox = document.getElementById('sellerSelectBox');
+  var angleIcon1 = document.getElementById('angleIcon1');
+
+  selectBox.classList.add('hidden');
+  angleIcon1.style.transform = 'rotate(0deg)';
+  document.removeEventListener('click', closeDropdownOutside1);
+}
+
+function updateSelectedOption1() {
+  var selectBox = document.getElementById('sellerSelectBox');
+  var selectedOption = document.getElementById('selectedOption1');
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
+  hideDropdown1();
+}
+
+function closeDropdownOutside1(event) {
+
+  if (!event.target.closest('.select-wrapper1')) {
+      hideDropdown1();
+  }
+}
+
+
 
 const selectBox = document.getElementById('selectBox');
     const selectedOption = document.getElementById('selectedOption');

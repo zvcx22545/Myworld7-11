@@ -63,6 +63,8 @@ addform.addEventListener("click", () => {
   let newForm = document.createElement("div");
   newForm.classList.add("container-form");
   let selectBoxId = `selectBox-${formCount}`;
+  let selectedId = `selected-${formCount}`;
+  let angleIconId = `angleIcon-${formCount}`;
   // formCount++;
 
   newForm.innerHTML = `
@@ -71,21 +73,16 @@ addform.addEventListener("click", () => {
             <label class="font-bold" for="type">ชิ้นที่ ${formCount + 1}</label>
             <label for="type">ประเภทสินค้า</label>
         </div>
-        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
-            <!-- Adjust this div to use flex and justify-between for alignment -->
-            <div
-                class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
-                <span class="me-auto selectedOption">My beer</span>
-                <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
-            </div>
-            <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
-                required>
-                <div id="selectedValueDisplay"></div>
-                <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
-                
-  }</option>
-            </select>
+        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]" onclick="toggleDropdown2('${selectBoxId}', '${angleIconId}')">
+        <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-wrapper">
+            <span id="${selectedId}" class="me-auto">My Beer</span>
+            <i id="${angleIconId}" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
+        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden Z-10" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
+            <option value="" disabled selected>กรุณาเลือก</option>
+        </select>
+    </div>
+     
     </div>
     <div class="grid items-end w-full">
             <div class="flex justify-end">
@@ -102,9 +99,7 @@ addform.addEventListener("click", () => {
 
   newForm.id = "container-form-" + formCount; // Update ID of the new form section
   formContainer.appendChild(newForm);
-  showoption();
-  assignEventListeners();
-  
+  showoption();  
   let inputElements = document.querySelectorAll(".Price");
   // Loop through each input element and attach the event listener
   inputElements.forEach(function (inputElement) {
@@ -117,8 +112,54 @@ addform.addEventListener("click", () => {
   // Assuming you're dynamically creating the select options with JS
   //   formCount++;
   //   }
-
 });
+
+function toggleDropdown2(selectBoxId, angleIconId) {
+  let selectBox = document.getElementById(selectBoxId);
+  let angleIcon = document.getElementById(angleIconId);
+
+  if (selectBox.classList.contains('hidden')) {
+      selectBox.classList.remove('hidden');
+      selectBox.size = selectBox.options.length; // Adjust the size of the dropdown
+      angleIcon.style.transform = 'rotate(180deg)';
+      document.addEventListener('click', closeDropdownOutside2); // Add event listener to close dropdown when clicking outside
+  } else {
+      selectBox.classList.add('hidden');
+      angleIcon.style.transform = 'rotate(0deg)';
+      document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
+  }
+}
+
+function hideDropdown2(selectBoxId, angleIconId) {
+  let selectBox = document.getElementById(selectBoxId);
+  let angleIcon = document.getElementById(angleIconId);
+
+  selectBox.classList.add('hidden');
+  angleIcon.style.transform = 'rotate(0deg)';
+  document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
+}
+
+function updateSelectedOption2(selectBoxId, selectedId) {
+  let selectBox = document.getElementById(selectBoxId);
+  let selectedOption = document.getElementById(selectedId);
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
+  hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
+}
+
+function closeDropdownOutside2(event) {
+  // Check if the click is outside the dropdown and hide it if necessary
+  let selectBoxes = document.querySelectorAll('.select-Box');
+  let angleIcons = document.querySelectorAll('.fa-angle-down');
+
+  for (let i = 0; i < selectBoxes.length; i++) {
+      if (!event.target.closest('.select-wrapper')) {
+          selectBoxes[i].classList.add('hidden');
+          angleIcons[i].style.transform = 'rotate(0deg)';
+      }
+  }
+
+  document.removeEventListener('click', closeDropdownOutside2); // Remove event listener after handling the click
+}
 
 const decimalformat = () => {
   const Pricedecumal = document.querySelectorAll('.Price'); // Note the '.' before 'Price' to select elements with the class 'Price'
@@ -162,31 +203,44 @@ function showoption() {
 }
 
 
+// function assignEventListeners() {
+//   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+//     selectBox.addEventListener("click", function (event) {
+//       event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
+//       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+//       if (!isRotated) {
+//         angleIcon.style.transform = "rotate(180deg)";
+//         isRotated = true;
+//       } else {
+//         angleIcon.style.transform = "rotate(0deg)";
+//         isRotated = false;
+//       }
 
-function assignEventListeners() {
-  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-    const angleIcon = selectBox.parentElement.querySelector(".fas.fa-angle-down");
+//       if (!isRotated) this.size = 1;
+//     // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
+//     selectBox.addEventListener("click", function () {
+//       // ตรวจสอบสถานะการหมุนจาก dataset
+//       let isRotated = angleIcon.dataset.isRotated === "true";
+//       // เปลี่ยนแปลงการหมุนของ angle icon
+//       angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
+//       // อัปเดตสถานะการหมุนใน dataset
+//       angleIcon.dataset.isRotated = isRotated ? "false" : "true";
+//     });
 
-    // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
-    selectBox.addEventListener("click", function () {
-      // ตรวจสอบสถานะการหมุนจาก dataset
-      let isRotated = angleIcon.dataset.isRotated === "true";
-      // เปลี่ยนแปลงการหมุนของ angle icon
-      angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
-      // อัปเดตสถานะการหมุนใน dataset
-      angleIcon.dataset.isRotated = isRotated ? "false" : "true";
-    });
-
-    // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
-    selectBox.addEventListener("change", function () {
-      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-      // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
-      angleIcon.style.transform = "rotate(0deg)";
-      // อัพเดตสถานะการหมุนใน dataset
-      this.dataset.isRotated = "false";
-    });
-  });
-}
+//     // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
+//     selectBox.addEventListener("change", function () {
+//       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+//       // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
+//       angleIcon.style.transform = "rotate(0deg)";
+//       isRotated = false;
+//       this.blur();
+//       this.size = 0;
+//       // อัพเดตสถานะการหมุนใน dataset
+//       this.dataset.isRotated = "false";
+//     });
+//   });
+// })
+// }
 
 
 
