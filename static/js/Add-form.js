@@ -78,7 +78,7 @@ addform.addEventListener("click", () => {
             <span id="${selectedId}" class="me-auto">My Beer</span>
             <i id="${angleIconId}" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
-        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden Z-10" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
+        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
             <option value="" disabled selected>กรุณาเลือก</option>
         </select>
     </div>
@@ -115,6 +115,17 @@ addform.addEventListener("click", () => {
 });
 
 function toggleDropdown2(selectBoxId, angleIconId) {
+  let selectBoxes = document.querySelectorAll('.select-Box');
+  let angleIcons = document.querySelectorAll('.fa-angle-down');
+
+  // Close all other open dropdowns
+  for (let i = 0; i < selectBoxes.length; i++) {
+    if (selectBoxes[i].id !== selectBoxId && !selectBoxes[i].classList.contains('hidden')) {
+      selectBoxes[i].classList.add('hidden');
+      angleIcons[i].style.transform = 'rotate(0deg)';
+    }
+  }
+
   let selectBox = document.getElementById(selectBoxId);
   let angleIcon = document.getElementById(angleIconId);
 
@@ -157,9 +168,25 @@ function closeDropdownOutside2(event) {
           angleIcons[i].style.transform = 'rotate(0deg)';
       }
   }
-
-  document.removeEventListener('click', closeDropdownOutside2); // Remove event listener after handling the click
 }
+
+document.querySelectorAll('.select-Box').forEach(function(selectBox) {
+  let angleIcon = selectBox.parentElement.querySelector('.fas.fa-angle-down'); // Select the angle icon within the same container
+
+  // Attach click event listener to each select element
+  selectBox.addEventListener('click', function(event) {
+    event.preventDefault();
+    toggleDropdown2(this.id, angleIcon.id);
+  });
+
+  // Attach change event listener to each select element
+  selectBox.addEventListener('change', function() {
+    updateSelectedOption2(this.id, 'selectedOption1');
+  });
+});
+
+
+
 
 const decimalformat = () => {
   const Pricedecumal = document.querySelectorAll('.Price'); // Note the '.' before 'Price' to select elements with the class 'Price'
