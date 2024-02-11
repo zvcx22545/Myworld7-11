@@ -12,8 +12,8 @@ uploadImgInput.addEventListener('change', (event) => {
             img.src = e.target.result;
 
             img.onload = () => {
-                const maxWidth = 150;
-                const maxHeight = 150;
+                const maxWidth = 160;
+                const maxHeight = 160;
 
                 const width = img.width;
                 const height = img.height;

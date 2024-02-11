@@ -250,7 +250,7 @@ function Blockcharater(event) {
   var regex = /^\d+$/; // Regular expression to match only numbers
   if (!regex.test(event.key)) {
     event.preventDefault(); // Prevent non-numeric characters
-    showAlert("แจ้งเดือน!", "สามารถกรอกตัวเลขได้เท่านั้น!", "error");
+    showAlert("แจ้งเตือน!", "สามารถกรอกตัวเลขได้เท่านั้น!", "error");
   }
 }
 

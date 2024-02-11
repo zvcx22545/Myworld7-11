@@ -14,8 +14,8 @@
 </head>
 
 <body>
-    <div class="flex justify-center items-center min-h-screen m-[2rem] max-[431px]:m-[0.5rem]">
-        <div class="w-[100%] max-[1180px]:mt-[5rem] max-[1600px]:mt-[10rem]  min-[1600px]:mt-[16rem] max-[500px]:my-[1.5rem]">
+    <div class="flex justify-center items-center min-h-screen m-[2rem] min-[430px]:m-[0.5rem]">
+        <div class="w-[100%] max-[1180px]:mt-[10rem] max-[1183px]:mx-[0.5rem] max-[1600px]:my-[13rem] max-[1600px]:mx-[20rem] min-[1600px]:mt-[16rem] max-[500px]:my-[1.5rem] ">
             <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]">
             <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[1rem]">
                 <div id="top-contents" class="text-center mb-[1rem]">
@@ -44,9 +44,8 @@
                                     <span id="selectedOption" class="me-auto">My beer</span>
                                     <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
-                                <select id="selectBox"
-                                    class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
-                                    required>
+                                <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box" required>
+
                                     <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
 
                                 </select>
@@ -76,7 +75,7 @@
                                 value="หน้าร้าน" readonly>
                         </div>
                         <div class="grid items-end w-full">
-                             <label for="type">แอดมิน</label>
+                             <label for="type">ผู้ขายสินค้า</label>
                             <!--<input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem]"
                                 type="text" required> -->
 
@@ -97,10 +96,10 @@
                 <!-- <hr class="mt-[2rem]"> -->
 
                     <div class="mt-[2rem] flex justify-between gap-[15px] h-[15vh]">
-                        <div class="w-[50%]" id="img-preview"></div>
-                        <div class="w-[70%] grid items-center">
+                        <div class="w-[50%]" id="img-preview"><img src="https://placehold.co/100x100" class="w-[10rem] mx-auto" alt="" id="mockimage" ></div>
+                        <div class="w-[70%] grid ">
                             <label for="upload-img"
-                                class=" border-2 border-[#28B7E1] w-full rounded-[6px] py-[5px] text-[#28B7E1]">
+                                class=" border-2 border-[#28B7E1] h-[40px] w-full top-0 rounded-[6px] py-[5px] text-[#28B7E1]">
                                 อัพโหลดรูป
                                 <input type="file" class="absolute opacity-0 cursor-pointer hidden" id="upload-img"
                                     required>
@@ -111,11 +110,12 @@
                         </div>
                     </div>
 
-                    <div class="mt-[1rem] mb-[2rem]">
+                    <div class=" mb-[2rem] max-[768px]:mt-[2rem] min-[768px]:mt-[5rem]">
                         <button type="submit"
                             class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]"
                             id="sent">ยืนยัน</button>
                     </div>
+
                 </form>
 
                 <div class="mt-[2rem] flex justify-center items-start hidden" id="processLoading">
@@ -163,5 +163,10 @@
 <script src="/static/js/img-preview.js"></script>
 <script src="/static/js/Validate.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
+
+
+</select>
+
+
 
 </html>
