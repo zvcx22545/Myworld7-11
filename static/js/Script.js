@@ -1,8 +1,8 @@
 let isRotated = false; // Track the rotation state
 function toggleDropdown() {
 
-  var selectBox = document.getElementById('selectBox');
-  var angleIcon = document.getElementById('angleIcon');
+  let selectBox = document.getElementById('selectBox');
+  let angleIcon = document.getElementById('angleIcon');
 
   if (selectBox.classList.contains('hidden')) {
       selectBox.classList.remove('hidden');
@@ -15,8 +15,8 @@ function toggleDropdown() {
 }
 
 function hideDropdown() {
-  var selectBox = document.getElementById('selectBox');
-  var angleIcon = document.getElementById('angleIcon');
+  let selectBox = document.getElementById('selectBox');
+  let angleIcon = document.getElementById('angleIcon');
 
   selectBox.classList.add('hidden');
   angleIcon.style.transform = 'rotate(0deg)';
@@ -24,15 +24,15 @@ function hideDropdown() {
 }
 
 function updateSelectedOption() {
-  var selectBox = document.getElementById('selectBox');
-  var selectedOption = document.getElementById('selectedOption');
+  let selectBox = document.getElementById('selectBox');
+  let selectedOption = document.getElementById('selectedOption');
   selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
   hideDropdown();
 }
 
 function closeDropdownOutside(event) {
-  var selectBox = document.getElementById('selectBox');
-  var angleIcon = document.getElementById('angleIcon');
+  let selectBox = document.getElementById('selectBox');
+  let angleIcon = document.getElementById('angleIcon');
 
   if (!event.target.closest('.select-wrapper')) {
       hideDropdown();
@@ -42,8 +42,8 @@ function closeDropdownOutside(event) {
 
 function toggleDropdown1() {
 
-  var selectBox = document.getElementById('sellerSelectBox');
-  var angleIcon = document.getElementById('angleIcon1');
+  let selectBox = document.getElementById('sellerSelectBox');
+  let angleIcon = document.getElementById('angleIcon1');
 
   if (selectBox.classList.contains('hidden')) {
       selectBox.classList.remove('hidden');
@@ -55,8 +55,8 @@ function toggleDropdown1() {
   }
 }
 function hideDropdown1() {
-  var selectBox = document.getElementById('sellerSelectBox');
-  var angleIcon1 = document.getElementById('angleIcon1');
+  let selectBox = document.getElementById('sellerSelectBox');
+  let angleIcon1 = document.getElementById('angleIcon1');
 
   selectBox.classList.add('hidden');
   angleIcon1.style.transform = 'rotate(0deg)';
@@ -64,15 +64,15 @@ function hideDropdown1() {
 }
 
 function updateSelectedOption1() {
-  var selectBox = document.getElementById('sellerSelectBox');
-  var selectedOption = document.getElementById('selectedOption1');
+  let selectBox = document.getElementById('sellerSelectBox');
+  let selectedOption = document.getElementById('selectedOption2');
   selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
   hideDropdown1();
 }
 
 function closeDropdownOutside1(event) {
-  var selectBox = document.getElementById('selectBox');
-  var angleIcon = document.getElementById('angleIcon');
+  let selectBox = document.getElementById('sellerSelectBox');
+  let angleIcon = document.getElementById('angleIcon1');
 
   if (!event.target.closest('.select-wrapper')) {
       hideDropdown1();
