@@ -210,7 +210,7 @@ $.ajax(GetAdmin)
 
     // Add default option
     $("#sellerSelectBox").append(
-      '<option value="" disabled selected>ผู้ขายสินค้า</option>'
+      '<option value="" disabled selected>แอดมิน</option>'
     );
 
     // Add options fetched from API
