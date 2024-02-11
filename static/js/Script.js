@@ -41,19 +41,19 @@ function closeDropdownOutside(event) {
 
 
 function toggleDropdown1() {
+
   var selectBox = document.getElementById('sellerSelectBox');
-  var angleIcon1 = document.getElementById('angleIcon1');
+  var angleIcon = document.getElementById('angleIcon1');
 
   if (selectBox.classList.contains('hidden')) {
       selectBox.classList.remove('hidden');
       selectBox.size = selectBox.length;
-      angleIcon1.style.transform = 'rotate(180deg)';
+      angleIcon.style.transform = 'rotate(180deg)';
       document.addEventListener('click', closeDropdownOutside1);
   } else {
       hideDropdown1();
   }
 }
-
 function hideDropdown1() {
   var selectBox = document.getElementById('sellerSelectBox');
   var angleIcon1 = document.getElementById('angleIcon1');
@@ -71,12 +71,13 @@ function updateSelectedOption1() {
 }
 
 function closeDropdownOutside1(event) {
+  var selectBox = document.getElementById('selectBox');
+  var angleIcon = document.getElementById('angleIcon');
 
-  if (!event.target.closest('.select-wrapper1')) {
+  if (!event.target.closest('.select-wrapper')) {
       hideDropdown1();
   }
 }
-
 
 
 const selectBox = document.getElementById('selectBox');
