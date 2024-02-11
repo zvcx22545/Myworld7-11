@@ -27,10 +27,11 @@ let formCount = 1; // Start with one form
 let value2 = 2;
 let value3 = 3;
 
+
 const addform = document.getElementById("add-form");
 addform.addEventListener("click", () => {
 
-  fetch("https://games.myworld-store.com/api-dev//options/product", {
+  fetch("https://games.myworld-store.com/api//options/product", {
         method: "GET",
         headers: {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
@@ -161,31 +162,34 @@ function showoption() {
 }
 
 
+
 function assignEventListeners() {
   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-    selectBox.addEventListener("click", function (event) {
-      event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
-      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-      if (!isRotated) {
-        angleIcon.style.transform = "rotate(180deg)";
-        isRotated = true;
-      } else {
-        angleIcon.style.transform = "rotate(0deg)";
-        isRotated = false;
-      }
+    const angleIcon = selectBox.parentElement.querySelector(".fas.fa-angle-down");
 
-      if (!isRotated) this.size = 1;
+    // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
+    selectBox.addEventListener("click", function () {
+      // ตรวจสอบสถานะการหมุนจาก dataset
+      let isRotated = angleIcon.dataset.isRotated === "true";
+      // เปลี่ยนแปลงการหมุนของ angle icon
+      angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
+      // อัปเดตสถานะการหมุนใน dataset
+      angleIcon.dataset.isRotated = isRotated ? "false" : "true";
     });
 
+    // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
     selectBox.addEventListener("change", function () {
       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
       angleIcon.style.transform = "rotate(0deg)";
-      isRotated = false;
-      this.blur();
-      this.size = 0;
+      // อัพเดตสถานะการหมุนใน dataset
+      this.dataset.isRotated = "false";
     });
   });
 }
+
+
+
 
 // Block character function
 function Blockcharater(event) {

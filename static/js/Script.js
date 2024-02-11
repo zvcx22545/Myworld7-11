@@ -23,14 +23,12 @@ document.querySelectorAll('.select-Box').forEach(function(selectBox) {
   });
 
   // Attach change event listener to each select element
-  selectBox.addEventListener('change', function() {
-    const angleIcon = this.parentElement.querySelector('.fas.fa-angle-down'); // Select the icon within the same container
-    
-    // Ensure the icon rotates back to 0 degrees upon selection
-    angleIcon.style.transform = 'rotate(0deg)';
-    isRotated = false;
-    this.blur(); // Remove focus from select to reset its state
-    this.size = 0; // Reset size to default to close the dropdown
+  selectBox.addEventListener("change", function () {
+    const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+    // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
+    angleIcon.style.transform = "rotate(0deg)";
+    // อัพเดตสถานะการหมุนใน dataset
+    this.dataset.isRotated = "false";
   });
 });
 
