@@ -40,7 +40,7 @@ $(document).ready(function() {
 
       // Adjusted Image Upload AJAX call
       let settings = {
-          "url": "https://games.myworld-store.com/api-dev//upload/file",
+          "url": "https://games.myworld-store.com/api//upload/file",
           "method": "POST",
           "timeout": 0,
           "processData": false,
@@ -80,7 +80,7 @@ function submitFormData(phone, adminId, products, imageUrl) {
     console.log(data)
     // Submitform API AJAX call
     $.ajax({
-        url: "https://games.myworld-store.com/api-dev//orders/shopTransaction",
+        url: "https://games.myworld-store.com/api//orders/shopTransaction",
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -157,9 +157,11 @@ checkPayment.addEventListener("click", function () {
 
 
 });
+
+//Api 701
   
   var GetProduct = {
-    url: "https://games.myworld-store.com/api-dev//options/product",
+    url: "https://games.myworld-store.com/api//options/product",
     method: "GET",
     timeout: 0,
     headers: {
@@ -186,9 +188,9 @@ $.ajax(GetProduct)
         console.error("Error fetching products:", error);
     });
 
-
+//Api 702
     var Getadmin = {
-      "url": "https://games.myworld-store.com/api-dev//options/admin",
+      "url": "https://games.myworld-store.com/api//options/admin",
       "method": "GET",
       "timeout": 0,
       "headers": {
