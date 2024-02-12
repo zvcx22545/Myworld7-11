@@ -40,18 +40,17 @@
                             </div>
                             <div class="relative inline-block w-full h-[40px] mt-[0.5rem]" onclick="toggleDropdown()">
                                 <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-wrapper">
-                                    <span id="selectedOption5" class="me-auto">ประเภทสินค้า</span>
+                                    <span id="selectedOption5" class="me-auto">My beer</span>
                                     <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="selectBox" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10" onchange="updateSelectedOption()">
                                     <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
-                               
                                 </select>
                             </div>
                         </div>
                         <div class="grid items-end w-full">
                             <label for="type">ราคา (บาท)</label>
-                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" id="Price" type="text" required value="">
+                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" id="Price" type="text" required>
                         </div>
                     </div>
 
