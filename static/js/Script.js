@@ -79,7 +79,6 @@ function closeDropdownOutside1(event) {
   }
 }
 
-
 const selectBox = document.getElementById('selectBox');
     const selectedOption = document.getElementById('selectedOption');
 
@@ -95,7 +94,6 @@ const selectBox1 = document.getElementById('sellerSelectBox');
     });
 
 const priceInput = document.getElementById('Price');
-
     priceInput.addEventListener('blur', function(event) {
         this.value = parseFloat(this.value).toFixed(2);
     });
