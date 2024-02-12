@@ -26,7 +26,7 @@ function hideDropdown() {
 function updateSelectedOption() {
   let selectBox = document.getElementById('selectBox');
   let selectedOption = document.getElementById('selectedOption5');
-  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text.slice(0, 8)+"...";
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
   hideDropdown();
 }
 
@@ -66,7 +66,7 @@ function hideDropdown1() {
 function updateSelectedOption1() {
   let selectBox = document.getElementById('sellerSelectBox');
   let selectedOption = document.getElementById('selectedOption2');
-  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text.slice(0, 12)+"...";
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text
   hideDropdown1();
 }
 

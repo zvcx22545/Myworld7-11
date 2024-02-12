@@ -42,7 +42,7 @@ $(document).ready(function () {
 
       // Adjusted Image Upload AJAX call
       let Uploadfile = {
-        url: "https://games.myworld-store.com/api-dev//upload/file",
+        url: "https://games.myworld-store.com/api/upload/file",
         method: "POST",
         timeout: 0,
         processData: false,
@@ -82,7 +82,7 @@ $(document).ready(function () {
     console.log(data);
     // Submitform API AJAX call
     $.ajax({
-      url: "https://games.myworld-store.com/api-dev//orders/shopTransaction",
+      url: "https://games.myworld-store.com/api/orders/shopTransaction",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -161,7 +161,7 @@ $(document).ready(function () {
 //Api 701
 
 var GetProduct = {
-    "url": "https://games.myworld-store.com/api-dev//options/product",
+    "url": "https://games.myworld-store.com/api/options/product",
     "method": "GET",
     "timeout": 0,
     "headers": {
@@ -216,7 +216,7 @@ var GetProduct = {
 
 //Api 702
 let GetAdmin = {
-    "url": "https://games.myworld-store.com/api-dev//options/admin",
+    "url": "https://games.myworld-store.com/api/options/admin",
     "method": "GET",
     "timeout": 0,
     "headers": {
@@ -231,7 +231,7 @@ $.ajax(GetAdmin)
 
     // Add default option
     $("#sellerSelectBox").append(
-      '<option value="" disabled selected>แอดมิน</option>'
+      '<option value="" disabled selected>ชื่อผู้ขายสินค้า</option>'
     );
 
     // Add options fetched from API
