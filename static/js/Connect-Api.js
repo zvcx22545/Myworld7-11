@@ -193,7 +193,12 @@ var GetProduct = {
 
     // Set the initial price value based on the first option
     if (response.length > 0) {
-      $('#Price').val(0);
+      // Format the initial price value
+      let initialPrice = parseFloat(0).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      $('#Price').val(initialPrice);
     }
 
     // Handle change event on select box
@@ -206,13 +211,19 @@ var GetProduct = {
       
       // Set the price to the matched option's price
       if (selectedOption) {
-        $('#Price').val(selectedOption.price );
+        // Format the price value
+        let formattedPrice = parseFloat(selectedOption.price).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        $('#Price').val(formattedPrice);
       }
     });
   })
   .fail(function (xhr, status, error) {
     console.error("Error fetching products:", error);
   });
+  
 
 //Api 702
 let GetAdmin = {
