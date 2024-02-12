@@ -63,7 +63,7 @@ addform.addEventListener("click", () => {
             
               // Set the price to the matched option's price
               if (selectedOption) {
-                  document.getElementById("Price").value = selectedOption.price;
+                  document.getElementById(Price).value = selectedOption.price;
               }
           });
       });
@@ -79,6 +79,7 @@ addform.addEventListener("click", () => {
   let selectBoxId = `selectBox-${formCount}`;
   let selectedId = `selected-${formCount}`;
   let angleIconId = `angleIcon-${formCount}`;
+  let Price = `Price-${formCount}`;
   // formCount++;
 
   newForm.innerHTML = `
@@ -107,7 +108,7 @@ addform.addEventListener("click", () => {
                 </button>
             </div>
         <label for="Price-${formCount}">ราคา (บาท)</label>
-        <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" type="text" id="Price-${formCount}" required>
+        <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" type="text" id="${Price}" required>
     </div>
       `;
 

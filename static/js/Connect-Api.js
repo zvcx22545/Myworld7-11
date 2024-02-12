@@ -192,9 +192,6 @@ var GetProduct = {
     });
 
     // Set the initial price value based on the first option
-    if (response.length > 0) {
-      $('#Price').val(response[0].price);
-    }
 
     // Handle change event on select box
     $("#selectBox").change(function() {
@@ -231,7 +228,7 @@ $.ajax(GetAdmin)
 
     // Add default option
     $("#sellerSelectBox").append(
-      '<option value="" disabled selected>แอดมิน</option>'
+      '<option value="" disabled selected>ชื่อผู้ขายสินค้า</option>'
     );
 
     // Add options fetched from API
