@@ -31,7 +31,7 @@ let value3 = 3;
 const addform = document.getElementById("add-form");
 addform.addEventListener("click", () => {
 
-  fetch("https://games.myworld-store.com/api//options/product", {
+  fetch("https://games.myworld-store.com/api/options/product", {
         method: "GET",
         headers: {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
@@ -90,7 +90,7 @@ addform.addEventListener("click", () => {
         </div>
         <div class="relative inline-block w-full h-[40px] mt-[0.5rem]" onclick="toggleDropdown2('${selectBoxId}', '${angleIconId}')">
         <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-wrapper">
-            <span id="${selectedId}" class="me-auto">My Beer</span>
+            <span id="${selectedId}" class="me-auto line-clamp-1">My Beer</span>
             <i id="${angleIconId}" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
         <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10 w-[20%]" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
@@ -108,7 +108,7 @@ addform.addEventListener("click", () => {
                 </button>
             </div>
         <label for="Price-${formCount}">ราคา (บาท)</label>
-        <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" type="text" id="${Price}" required>
+        <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" type="text" id="${Price}" required readonly>
     </div>
       `;
 
@@ -168,7 +168,7 @@ function hideDropdown2(selectBoxId, angleIconId) {
 function updateSelectedOption2(selectBoxId, selectedId) {
   let selectBox = document.getElementById(selectBoxId);
   let selectedOption = document.getElementById(selectedId);
-  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text.slice(0, 8)+"...";
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
   hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
 }
 

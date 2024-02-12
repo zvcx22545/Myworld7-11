@@ -42,7 +42,7 @@ $(document).ready(function () {
 
       // Adjusted Image Upload AJAX call
       let Uploadfile = {
-        url: "https://games.myworld-store.com/api-dev//upload/file",
+        url: "https://games.myworld-store.com/api/upload/file",
         method: "POST",
         timeout: 0,
         processData: false,
@@ -82,7 +82,7 @@ $(document).ready(function () {
     console.log(data);
     // Submitform API AJAX call
     $.ajax({
-      url: "https://games.myworld-store.com/api-dev//orders/shopTransaction",
+      url: "https://games.myworld-store.com/api/orders/shopTransaction",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -161,7 +161,7 @@ $(document).ready(function () {
 //Api 701
 
 var GetProduct = {
-    "url": "https://games.myworld-store.com/api-dev//options/product",
+    "url": "https://games.myworld-store.com/api/options/product",
     "method": "GET",
     "timeout": 0,
     "headers": {
@@ -193,7 +193,7 @@ var GetProduct = {
 
     // Set the initial price value based on the first option
     if (response.length > 0) {
-      $('#Price').val(0 +" บาท");
+      $('#Price').val(0);
     }
 
     // Handle change event on select box
@@ -206,7 +206,7 @@ var GetProduct = {
       
       // Set the price to the matched option's price
       if (selectedOption) {
-        $('#Price').val(selectedOption.price +" บาท");
+        $('#Price').val(selectedOption.price );
       }
     });
   })
@@ -216,7 +216,7 @@ var GetProduct = {
 
 //Api 702
 let GetAdmin = {
-    "url": "https://games.myworld-store.com/api-dev//options/admin",
+    "url": "https://games.myworld-store.com/api/options/admin",
     "method": "GET",
     "timeout": 0,
     "headers": {
