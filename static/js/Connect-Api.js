@@ -193,7 +193,7 @@ var GetProduct = {
 
     // Set the initial price value based on the first option
     if (response.length > 0) {
-      $('#Price').val(0 +" บาท");
+      $('#Price').val(0);
     }
 
     // Handle change event on select box
@@ -206,7 +206,7 @@ var GetProduct = {
       
       // Set the price to the matched option's price
       if (selectedOption) {
-        $('#Price').val(selectedOption.price +" บาท");
+        $('#Price').val(selectedOption.price);
       }
     });
   })
