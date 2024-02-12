@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   // Initial API calls to populate dropdowns
   // (Your GetProduct and GetAdmin AJAX calls here)
@@ -41,7 +42,7 @@ $(document).ready(function () {
 
       // Adjusted Image Upload AJAX call
       let Uploadfile = {
-        url: "https://games.myworld-store.com/api/upload/file",
+        url: "https://games.myworld-store.com/api-dev//upload/file",
         method: "POST",
         timeout: 0,
         processData: false,
@@ -81,7 +82,7 @@ $(document).ready(function () {
     console.log(data);
     // Submitform API AJAX call
     $.ajax({
-      url: "https://games.myworld-store.com/api/orders/shopTransaction",
+      url: "https://games.myworld-store.com/api-dev//orders/shopTransaction",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -160,7 +161,7 @@ $(document).ready(function () {
 //Api 701
 
 var GetProduct = {
-    "url": "https://games.myworld-store.com/api/options/product",
+    "url": "https://games.myworld-store.com/api-dev//options/product",
     "method": "GET",
     "timeout": 0,
     "headers": {
@@ -168,7 +169,7 @@ var GetProduct = {
     },
   };
 
-$.ajax(GetProduct)
+  $.ajax(GetProduct)
   .done(function (response) {
     // Clear previous options
     $("#selectBox").empty();
@@ -178,15 +179,35 @@ $.ajax(GetProduct)
       '<option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>'
     );
 
-    // Add options fetched from API
+    // Iterate over each option in the response
     response.forEach(function (option) {
+      // Append option to select box
       let displayName =
-        option.name.length > 12
-          ? option.name.slice(0, 20) + "..."
+        option.name.length > 50
+          ? option.name.slice(0, 50) + "..."
           : option.name;
       $("#selectBox").append(
         '<option value="' + option.id + '">' + displayName + "</option>"
       );
+    });
+
+    // Set the initial price value based on the first option
+    if (response.length > 0) {
+      $('#Price').val(response[0].price);
+    }
+
+    // Handle change event on select box
+    $("#selectBox").change(function() {
+      // Get the selected option id
+      let selectedId = $(this).val();
+      
+      // Find the corresponding option in the response array
+      let selectedOption = response.find(option => option.id == selectedId);
+      
+      // Set the price to the matched option's price
+      if (selectedOption) {
+        $('#Price').val(selectedOption.price);
+      }
     });
   })
   .fail(function (xhr, status, error) {
@@ -195,7 +216,7 @@ $.ajax(GetProduct)
 
 //Api 702
 let GetAdmin = {
-    "url": "https://games.myworld-store.com/api//options/admin",
+    "url": "https://games.myworld-store.com/api-dev//options/admin",
     "method": "GET",
     "timeout": 0,
     "headers": {

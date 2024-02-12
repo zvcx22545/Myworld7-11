@@ -41,19 +41,33 @@ addform.addEventListener("click", () => {
     .then(data => {
         // Loop through the data and create option elements
         data.forEach(option => {
-            let optionElement = document.createElement("option");
-            optionElement.value = option.id;
+          let optionElement = document.createElement("option");
+          optionElement.value = option.id;
+          
+          // Set the display name of the option
+          let displayName =
+              option.name.length > 50
+                  ? option.name.slice(0, 50) + "..."
+                  : option.name;
+          optionElement.textContent = displayName;
+          
+          document.getElementById(selectBoxId).appendChild(optionElement);
+      
+          // Add event listener to handle change in select box
+          document.getElementById(selectBoxId).addEventListener("change", function() {
+              // Get the selected option id
+              let selectedId = this.value;
             
-            // if (window.innerWidth <= 430) {
-            //     optionElement.textContent = option.name.length > 8 ? option.name.slice(0, 8) + "..." : option.name;
-            // } else {
-                optionElement.textContent = option.name;
-            // }
+              // Find the corresponding option in the data array
+              let selectedOption = data.find(option => option.id == selectedId);
             
-            document.getElementById(selectBoxId).appendChild(optionElement);
-            // console.log(optionElement.value);
-            
-        });
+              // Set the price to the matched option's price
+              if (selectedOption) {
+                  document.getElementById("Price").value = selectedOption.price;
+              }
+          });
+      });
+      
     })
     .catch(error => {
         console.error('Error fetching options:', error);
@@ -78,7 +92,7 @@ addform.addEventListener("click", () => {
             <span id="${selectedId}" class="me-auto">My Beer</span>
             <i id="${angleIconId}" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
-        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
+        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10 w-[20%]" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
             <option value="" disabled selected>กรุณาเลือก</option>
         </select>
     </div>
@@ -99,7 +113,7 @@ addform.addEventListener("click", () => {
 
   newForm.id = "container-form-" + formCount; // Update ID of the new form section
   formContainer.appendChild(newForm);
-  showoption();  
+  // showoption();  
   let inputElements = document.querySelectorAll(".Price");
   // Loop through each input element and attach the event listener
   inputElements.forEach(function (inputElement) {
@@ -153,7 +167,7 @@ function hideDropdown2(selectBoxId, angleIconId) {
 function updateSelectedOption2(selectBoxId, selectedId) {
   let selectBox = document.getElementById(selectBoxId);
   let selectedOption = document.getElementById(selectedId);
-  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
+  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text.slice(0, 8)+"...";
   hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
 }
 
@@ -211,23 +225,23 @@ const decimalformat = () => {
 
 
 
-function showoption() {
-  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-    selectBox.addEventListener("change", function () {
-      let selectedOption = this.options[this.selectedIndex].textContent;
+// function showoption() {
+//   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+//     selectBox.addEventListener("change", function () {
+//       let selectedOption = this.options[this.selectedIndex].textContent;
 
-      // Check if the selected option text length is more than 15 characters
-      if (selectedOption.length > 10) {
-        // Slice the string to only include characters from the 13th to the 15th position
-        // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
-        // Adjust the start index and end index as needed
-        selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
-      }
+//       // Check if the selected option text length is more than 15 characters
+//       if (selectedOption.length > 10) {
+//         // Slice the string to only include characters from the 13th to the 15th position
+//         // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
+//         // Adjust the start index and end index as needed
+//         selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
+//       }
 
-      this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
-    });
-  });
-}
+//       this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
+//     });
+//   });
+// }
 
 
 // function assignEventListeners() {

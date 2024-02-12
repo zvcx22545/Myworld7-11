@@ -14,12 +14,13 @@
 </head>
 
 <body>
+    
     <div class="flex justify-center items-center min-h-screen m-[2rem] min-[430px]:m-[0.5rem]">
         <div class="w-[100%] max-[1180px]:mt-[10rem] max-[1183px]:mx-[0.5rem] max-[1600px]:my-[13rem] max-[1600px]:mx-[20rem] min-[1600px]:mt-[16rem] min-[1600px]:mx-[16rem] max-[500px]:my-[1.5rem] ">
             <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]">
             <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[1rem]">
                 <div id="top-contents" class="text-center mb-[1rem]">
-                    <h1 class="text-bold">My Beer</h1>
+                    <h1 class="text-bold">My World</h1>
                     <h1 class="text-bold">กรอกข้อมูลการขาย เพื่อสะสมแต้ม</h1>
                 </div>
                 <form action="" id="form-submit">
@@ -39,7 +40,7 @@
                             </div>
                             <div class="relative inline-block w-full h-[40px] mt-[0.5rem]" onclick="toggleDropdown()">
                                 <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-wrapper">
-                                    <span id="selectedOption" class="me-auto">ประเภทสินค้า</span>
+                                    <span id="selectedOption5" class="me-auto">ประเภทสินค้า</span>
                                     <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="selectBox" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10" onchange="updateSelectedOption()">
@@ -50,7 +51,7 @@
                         </div>
                         <div class="grid items-end w-full">
                             <label for="type">ราคา (บาท)</label>
-                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" id="Price" type="text" required>
+                            <input class="w-[100%] h-[40px] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem] text-right Price" id="Price" type="text" required value="">
                         </div>
                     </div>
 
