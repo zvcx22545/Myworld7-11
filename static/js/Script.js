@@ -55,6 +55,13 @@ document.addEventListener('touchstart', function(event) {
     if (!isClickInsideDropdown && isDropdownActive) {
         dropdownContainer.classList.remove('active');
     }
+    const selectBox = document.getElementById('selectBox');
+
+// เพิ่ม event listener สำหรับการเลือก option
+    selectBox.addEventListener('change', function(event) {
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    dropdownContainer.classList.remove('active');
+  });
 });
 
 document.addEventListener('click', function(event) {
@@ -67,6 +74,8 @@ document.addEventListener('click', function(event) {
         dropdownContainer.classList.remove('active');
     }
 });
+
+
 
 
 const dropdownContainer2 = document.getElementById('dropdownContainer2');
@@ -89,6 +98,13 @@ document.addEventListener('touchstart', function(event) {
     if (!isClickInsideDropdown && isDropdownActive) {
         dropdownContainer.classList.remove('active');
     }
+    const selectBox = document.getElementById('sellerSelectBox');
+
+// เพิ่ม event listener สำหรับการเลือก option
+    selectBox.addEventListener('change', function(event) {
+    const dropdownContainer = document.getElementById('dropdownContainer2');
+    dropdownContainer.classList.remove('active');
+  });
 });
 
 document.addEventListener('click', function(event) {
