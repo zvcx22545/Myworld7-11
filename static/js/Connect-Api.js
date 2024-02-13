@@ -211,6 +211,7 @@ var GetProduct = {
       
       // Set the price to the matched option's price
       if (selectedOption) {
+        $("#selectedOption").text(selectedOption.name);
         // Format the price value
         let formattedPrice = parseFloat(selectedOption.price).toLocaleString('en-US', {
           minimumFractionDigits: 2,
@@ -223,7 +224,7 @@ var GetProduct = {
   .fail(function (xhr, status, error) {
     console.error("Error fetching products:", error);
   });
-  
+
 
 //Api 702
 let GetAdmin = {
@@ -234,7 +235,6 @@ let GetAdmin = {
       "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDUzMzYzNDR9.g0VSsvTajlOr_FsNiQBTuCbIUM-O24R5jCwREc_9eP0"
     },
 };
-
 $.ajax(GetAdmin)
   .done(function (response) {
     // Clear previous options
@@ -254,11 +254,33 @@ $.ajax(GetAdmin)
           optionAdmin.name +
           "</option>"
       );
+      console.log(optionAdmin.admin_id)
+
+    });
+
+    // Set the initial selected option name on the span
+    if (response.length > 0) {
+      $("#selectedOption1").text(response[0].name); // Set the text of the span to the name of the first option
+    }
+    
+    // Handle change event on select box
+    $("#sellerSelectBox").change(function() {
+      // Get the selected option id
+      let selectedId = $(this).val();
+      
+      // Find the corresponding option in the response array
+      let selectedOption = response.find(option => option.admin_id == selectedId);
+      
+      // Set the name to the matched option's name
+      if (selectedOption) {
+        $("#selectedOption1").text(selectedOption.name); // Set the text of the span to the name of the selected option
+      }
     });
   })
   .fail(function (xhr, status, error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching admins:", error);
   });
+
 
 // function submitFormData(phone, productId, adminId,Price, imageUrl) {
 //     // Prepare data for Submitform API

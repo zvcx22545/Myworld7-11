@@ -35,16 +35,16 @@ document.querySelectorAll(".select-Box").forEach(function (selectBox) {
 });
 })
 
-const selectBox = document.getElementById('selectBox');
-    const selectedOption = document.getElementById('selectedOption');
-    selectBox.addEventListener('change', function() {
-        selectedOption.textContent = this.options[this.selectedIndex].textContent;
-    });
-const selectBox1 = document.getElementById('sellerSelectBox');
-    const selectedOption1 = document.getElementById('selectedOption1');
-    selectBox1.addEventListener('change', function() {
-        selectedOption1.textContent = this.options[this.selectedIndex].textContent;
-    });
+// const selectBox = document.getElementById('selectBox');
+//     const selectedOption = document.getElementById('selectedOption');
+//     selectBox.addEventListener('change', function() {
+//         selectedOption.textContent = this.options[this.selectedIndex].textContent;
+//     });
+// const selectBox1 = document.getElementById('sellerSelectBox');
+//     const selectedOption1 = document.getElementById('selectedOption1');
+//     selectBox1.addEventListener('change', function() {
+//         selectedOption1.textContent = this.options[this.selectedIndex].textContent;
+//     });
 const priceInput = document.getElementById('Price');
     priceInput.addEventListener('blur', function(event) {
         this.value = parseFloat(this.value).toFixed(2);

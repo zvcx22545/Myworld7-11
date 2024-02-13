@@ -41,7 +41,7 @@
                             <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
                                 <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
                                     <span id="selectedOption" class="me-auto">My beer</span>
-                                    <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                    <i id="angleIcon1" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box" required>
                                     <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
@@ -76,16 +76,15 @@
                         <div class="grid">
                                 <label for="admin">ผู้ขายสินค้า</label>
                             </div>
-                        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
-                            <div
-                                class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
-                                <span id="selectedOption1" class="me-auto">ผู้ขายสินค้า</span>
-                                <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                                <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+                                    <span id="selectedOption1" class="me-auto">ผู้ขายสินค้า</span>
+                                    <i id="angleIcon2" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                </div>
+                                <select id="sellerSelectBox" name="options" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box">
+                                    <option value="" disabled selected>ผู้ขายสินค้า</option>
+                                </select>
                             </div>
-                            <select id="sellerSelectBox" name="options" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box">
-                                <option value="" disabled selected>ผู้ขายสินค้า</option>
-                            </select>
-                        </div>
                     </div>
                     </div>
 
@@ -152,8 +151,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- <script src="./static/js/Script.js"></script> -->
-<script src="./static/js/Add-form.js"></script>
+<script src="/static/js/Script.js"></script>
+<script src="/static/js/Add-form.js"></script>
 <script src="/static/js/hideAndseek.js"></script>
 <script src="/static/js/Connect-Api.js"></script>
 <script src="/static/js/img-preview.js"></script>
