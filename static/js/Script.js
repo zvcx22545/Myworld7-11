@@ -38,8 +38,29 @@
 document.getElementById('dropdownContainer').addEventListener('click', function () {
   this.classList.toggle('active');
 });
+document.addEventListener('click', function(event) {
+  const dropdownContainer = document.getElementById('dropdownContainer');
+  const target = event.target;
+  const isClickInsideDropdown = dropdownContainer.contains(target);
+  const isDropdownActive = dropdownContainer.classList.contains('active');
+  
+  if (!isClickInsideDropdown && isDropdownActive) {
+      dropdownContainer.classList.remove('active');
+  }
+});
+
 document.getElementById('dropdownContainer2').addEventListener('click', function () {
   this.classList.toggle('active');
+});
+document.addEventListener('click', function(event) {
+  const dropdownContainer = document.getElementById('dropdownContainer2');
+  const target = event.target;
+  const isClickInsideDropdown = dropdownContainer.contains(target);
+  const isDropdownActive = dropdownContainer.classList.contains('active');
+  
+  if (!isClickInsideDropdown && isDropdownActive) {
+      dropdownContainer.classList.remove('active');
+  }
 });
 
 // const selectBox = document.getElementById('selectBox');

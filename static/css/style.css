@@ -38,6 +38,7 @@ label,p
 #dropdownContainer.active .fas.fa-angle-down {
    transform: rotate(180deg);
 }
+
 #dropdownContainer2.active .fas.fa-angle-down {
    transform: rotate(180deg);
 }
