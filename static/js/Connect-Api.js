@@ -259,9 +259,6 @@ $.ajax(GetAdmin)
     });
 
     // Set the initial selected option name on the span
-    if (response.length > 0) {
-      $("#selectedOption1").text(response[0].name); // Set the text of the span to the name of the first option
-    }
     
     // Handle change event on select box
     $("#sellerSelectBox").change(function() {
