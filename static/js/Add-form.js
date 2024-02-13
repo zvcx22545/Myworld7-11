@@ -82,7 +82,7 @@ addform.addEventListener("click", () => {
   newForm.classList.add("container-form");
   let selectBoxId = `selectBox-${formCount}`;
   let selectedId = `selected-${formCount}`;
-  let angleIconId = `angleIcon-${formCount}`;
+  // let angleIconId = `angleIcon-${formCount}`;
   let Price = `Price-${formCount}`;
   // formCount++;
 
@@ -92,13 +92,19 @@ addform.addEventListener("click", () => {
             <label class="font-bold" for="type">ชิ้นที่ ${formCount + 1}</label>
             <label for="type">ประเภทสินค้า</label>
         </div>
-        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]" onclick="toggleDropdown2('${selectBoxId}', '${angleIconId}')">
-        <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-wrapper">
-            <span id="${selectedId}" class="me-auto line-clamp-1">My Beer</span>
-            <i id="${angleIconId}" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+        <!-- Adjust this div to use flex and justify-between for alignment -->
+        <div
+            class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+            <span class="me-auto selectedOption">My beer</span>
+            <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
-        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10 w-[20%]" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
-            <option value="" disabled selected>กรุณาเลือก</option>
+        <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
+            required>
+            <div id="selectedValueDisplay"></div>
+            <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
+            
+}</option>
         </select>
     </div>
      
@@ -118,7 +124,8 @@ addform.addEventListener("click", () => {
 
   newForm.id = "container-form-" + formCount; // Update ID of the new form section
   formContainer.appendChild(newForm);
-  // showoption();  
+  showoption();
+  assignEventListeners();
   let inputElements = document.querySelectorAll(".Price");
   // Loop through each input element and attach the event listener
   inputElements.forEach(function (inputElement) {
@@ -133,76 +140,20 @@ addform.addEventListener("click", () => {
   //   }
 });
 
-function toggleDropdown2(selectBoxId, angleIconId) {
-  let selectBoxes = document.querySelectorAll('.select-Box');
-  let angleIcons = document.querySelectorAll('.fa-angle-down');
+// document.querySelectorAll('.select-Box').forEach(function(selectBox) {
+//   let angleIcon = selectBox.parentElement.querySelector('.fas.fa-angle-down'); // Select the angle icon within the same container
 
-  // Close all other open dropdowns
-  for (let i = 0; i < selectBoxes.length; i++) {
-    if (selectBoxes[i].id !== selectBoxId && !selectBoxes[i].classList.contains('hidden')) {
-      selectBoxes[i].classList.add('hidden');
-      angleIcons[i].style.transform = 'rotate(0deg)';
-    }
-  }
+//   // Attach click event listener to each select element
+//   selectBox.addEventListener('click', function(event) {
+//     event.preventDefault();
+//     toggleDropdown2(this.id, angleIcon.id);
+//   });
 
-  let selectBox = document.getElementById(selectBoxId);
-  let angleIcon = document.getElementById(angleIconId);
-
-  if (selectBox.classList.contains('hidden')) {
-      selectBox.classList.remove('hidden');
-      selectBox.size = selectBox.options.length; // Adjust the size of the dropdown
-      angleIcon.style.transform = 'rotate(180deg)';
-      document.addEventListener('click', closeDropdownOutside2); // Add event listener to close dropdown when clicking outside
-  } else {
-      selectBox.classList.add('hidden');
-      angleIcon.style.transform = 'rotate(0deg)';
-      document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
-  }
-}
-
-function hideDropdown2(selectBoxId, angleIconId) {
-  let selectBox = document.getElementById(selectBoxId);
-  let angleIcon = document.getElementById(angleIconId);
-
-  selectBox.classList.add('hidden');
-  angleIcon.style.transform = 'rotate(0deg)';
-  document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
-}
-
-function updateSelectedOption2(selectBoxId, selectedId) {
-  let selectBox = document.getElementById(selectBoxId);
-  let selectedOption = document.getElementById(selectedId);
-  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
-  hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
-}
-
-function closeDropdownOutside2(event) {
-  // Check if the click is outside the dropdown and hide it if necessary
-  let selectBoxes = document.querySelectorAll('.select-Box');
-  let angleIcons = document.querySelectorAll('.fa-angle-down');
-
-  for (let i = 0; i < selectBoxes.length; i++) {
-      if (!event.target.closest('.select-wrapper')) {
-          selectBoxes[i].classList.add('hidden');
-          angleIcons[i].style.transform = 'rotate(0deg)';
-      }
-  }
-}
-
-document.querySelectorAll('.select-Box').forEach(function(selectBox) {
-  let angleIcon = selectBox.parentElement.querySelector('.fas.fa-angle-down'); // Select the angle icon within the same container
-
-  // Attach click event listener to each select element
-  selectBox.addEventListener('click', function(event) {
-    event.preventDefault();
-    toggleDropdown2(this.id, angleIcon.id);
-  });
-
-  // Attach change event listener to each select element
-  selectBox.addEventListener('change', function() {
-    updateSelectedOption2(this.id, 'selectedOption1');
-  });
-});
+//   // Attach change event listener to each select element
+//   selectBox.addEventListener('change', function() {
+//     updateSelectedOption2(this.id, 'selectedOption1');
+//   });
+// });
 
 
 
@@ -230,63 +181,63 @@ const decimalformat = () => {
 
 
 
-// function showoption() {
-//   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-//     selectBox.addEventListener("change", function () {
-//       let selectedOption = this.options[this.selectedIndex].textContent;
+function showoption() {
+  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+    selectBox.addEventListener("change", function () {
+      let selectedOption = this.options[this.selectedIndex].textContent;
 
-//       // Check if the selected option text length is more than 15 characters
-//       if (selectedOption.length > 10) {
-//         // Slice the string to only include characters from the 13th to the 15th position
-//         // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
-//         // Adjust the start index and end index as needed
-//         selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
-//       }
+      // Check if the selected option text length is more than 15 characters
+      if (selectedOption.length > 10) {
+        // Slice the string to only include characters from the 13th to the 15th position
+        // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
+        // Adjust the start index and end index as needed
+        selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
+      }
 
-//       this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
-//     });
-//   });
-// }
+      this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
+    });
+  });
+}
 
 
-// function assignEventListeners() {
-//   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-//     selectBox.addEventListener("click", function (event) {
-//       event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
-//       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-//       if (!isRotated) {
-//         angleIcon.style.transform = "rotate(180deg)";
-//         isRotated = true;
-//       } else {
-//         angleIcon.style.transform = "rotate(0deg)";
-//         isRotated = false;
-//       }
+function assignEventListeners() {
+  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+    selectBox.addEventListener("click", function (event) {
+      event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
+      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      if (!isRotated) {
+        angleIcon.style.transform = "rotate(180deg)";
+        isRotated = true;
+      } else {
+        angleIcon.style.transform = "rotate(0deg)";
+        isRotated = false;
+      }
 
-//       if (!isRotated) this.size = 1;
-//     // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
-//     selectBox.addEventListener("click", function () {
-//       // ตรวจสอบสถานะการหมุนจาก dataset
-//       let isRotated = angleIcon.dataset.isRotated === "true";
-//       // เปลี่ยนแปลงการหมุนของ angle icon
-//       angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
-//       // อัปเดตสถานะการหมุนใน dataset
-//       angleIcon.dataset.isRotated = isRotated ? "false" : "true";
-//     });
+      if (!isRotated) this.size = 1;
+    // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
+    selectBox.addEventListener("click", function () {
+      // ตรวจสอบสถานะการหมุนจาก dataset
+      let isRotated = angleIcon.dataset.isRotated === "true";
+      // เปลี่ยนแปลงการหมุนของ angle icon
+      angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
+      // อัปเดตสถานะการหมุนใน dataset
+      angleIcon.dataset.isRotated = isRotated ? "false" : "true";
+    });
 
-//     // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
-//     selectBox.addEventListener("change", function () {
-//       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-//       // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
-//       angleIcon.style.transform = "rotate(0deg)";
-//       isRotated = false;
-//       this.blur();
-//       this.size = 0;
-//       // อัพเดตสถานะการหมุนใน dataset
-//       this.dataset.isRotated = "false";
-//     });
-//   });
-// })
-// }
+    // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
+    selectBox.addEventListener("change", function () {
+      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
+      angleIcon.style.transform = "rotate(0deg)";
+      isRotated = false;
+      this.blur();
+      this.size = 0;
+      // อัพเดตสถานะการหมุนใน dataset
+      this.dataset.isRotated = "false";
+    });
+  });
+})
+}
 
 
 
@@ -319,51 +270,99 @@ function deleteForm() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const selectedOptionElement = document.getElementById('selectedOption');
-    const sellerSelectBox = document.getElementById('selectBox');
-    const selectedOptionElement1 = document.getElementById('selectedOption1');
-    const sellerSelectBox1 = document.getElementById('sellerSelectBox');
 
-    function updateSelectedOption1(selectedOptionElement, sellerSelectBox) {
-        const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
+// document.addEventListener('DOMContentLoaded', function () {
+//   const selectedOptionElement = document.getElementById('selectedOption');
+//   const sellerSelectBox = document.getElementById('selectBox');
+//   const selectedOptionElement1 = document.getElementById('selectedOption1');
+//   const sellerSelectBox1 = document.getElementById('sellerSelectBox');
+//   function updateSelectedOption1(selectedOptionElement, sellerSelectBox) {
+//       const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
+//       if (selectedOptionText.length > 10) {
+//           selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
+//       } else {
+//           selectedOptionElement.textContent = selectedOptionText;
+//       }
+//   }
+//   function updateSelectedOption2(selectedOptionElement, sellerSelectBox) {
+//       const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
+//       if (selectedOptionText.length > 13) {
+//           selectedOptionElement.textContent = selectedOptionText.slice(0, 13) + "...";
+//       } else {
+//           selectedOptionElement.textContent = selectedOptionText;
+//       }
+//   }
+//   function handleResize() {
+//       if (window.innerWidth <= 430) {
+//           updateSelectedOption1(selectedOptionElement, sellerSelectBox);
+//           updateSelectedOption2(selectedOptionElement1, sellerSelectBox1);
+//           sellerSelectBox.addEventListener('change', function () {
+//               updateSelectedOption1(selectedOptionElement, sellerSelectBox);
+//           });
+//           sellerSelectBox1.addEventListener('change', function () {
+//               updateSelectedOption2(selectedOptionElement1, sellerSelectBox1);
+//           });
+//       } else {
+//           sellerSelectBox.removeEventListener('change', updateSelectedOption1);
+//           sellerSelectBox1.removeEventListener('change', updateSelectedOption2);
+//       }
+//   }
+//   window.addEventListener('load', handleResize);
+//   window.addEventListener('resize', handleResize);
+// });
 
-        if (selectedOptionText.length > 10) {
-            selectedOptionElement.textContent = selectedOptionText.slice(0, 10) + "...";
-        } else {
-            selectedOptionElement.textContent = selectedOptionText;
-        }
-    }
+// function toggleDropdown2(selectBoxId, angleIconId) {
+//   let selectBoxes = document.querySelectorAll('.select-Box');
+//   let angleIcons = document.querySelectorAll('.fa-angle-down');
 
-    function updateSelectedOption2(selectedOptionElement, sellerSelectBox) {
-        const selectedOptionText = sellerSelectBox.options[sellerSelectBox.selectedIndex].text;
+//   // Close all other open dropdowns
+//   for (let i = 0; i < selectBoxes.length; i++) {
+//     if (selectBoxes[i].id !== selectBoxId && !selectBoxes[i].classList.contains('hidden')) {
+//       selectBoxes[i].classList.add('hidden');
+//       angleIcons[i].style.transform = 'rotate(0deg)';
+//     }
+//   }
 
-        if (selectedOptionText.length > 13) {
-            selectedOptionElement.textContent = selectedOptionText.slice(0, 13) + "...";
-        } else {
-            selectedOptionElement.textContent = selectedOptionText;
-        }
-    }
+//   let selectBox = document.getElementById(selectBoxId);
+//   let angleIcon = document.getElementById(angleIconId);
 
-    function handleResize() {
-        if (window.innerWidth <= 430) {
-            updateSelectedOption1(selectedOptionElement, sellerSelectBox);
-            updateSelectedOption2(selectedOptionElement1, sellerSelectBox1);
+//   if (selectBox.classList.contains('hidden')) {
+//       selectBox.classList.remove('hidden');
+//       selectBox.size = selectBox.options.length; // Adjust the size of the dropdown
+//       angleIcon.style.transform = 'rotate(180deg)';
+//       document.addEventListener('click', closeDropdownOutside2); // Add event listener to close dropdown when clicking outside
+//   } else {
+//       selectBox.classList.add('hidden');
+//       angleIcon.style.transform = 'rotate(0deg)';
+//       document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
+//   }
+// }
 
-            sellerSelectBox.addEventListener('change', function () {
-                updateSelectedOption1(selectedOptionElement, sellerSelectBox);
-            });
+// function hideDropdown2(selectBoxId, angleIconId) {
+//   let selectBox = document.getElementById(selectBoxId);
+//   let angleIcon = document.getElementById(angleIconId);
 
-            sellerSelectBox1.addEventListener('change', function () {
-                updateSelectedOption2(selectedOptionElement1, sellerSelectBox1);
-            });
-        } else {
-            sellerSelectBox.removeEventListener('change', updateSelectedOption1);
-            sellerSelectBox1.removeEventListener('change', updateSelectedOption2);
-        }
-    }
+//   selectBox.classList.add('hidden');
+//   angleIcon.style.transform = 'rotate(0deg)';
+//   document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
+// }
 
-    window.addEventListener('load', handleResize);
-    window.addEventListener('resize', handleResize);
-});
+// function updateSelectedOption2(selectBoxId, selectedId) {
+//   let selectBox = document.getElementById(selectBoxId);
+//   let selectedOption = document.getElementById(selectedId);
+//   selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
+//   hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
+// }
 
+// function closeDropdownOutside2(event) {
+//   // Check if the click is outside the dropdown and hide it if necessary
+//   let selectBoxes = document.querySelectorAll('.select-Box');
+//   let angleIcons = document.querySelectorAll('.fa-angle-down');
+
+//   for (let i = 0; i < selectBoxes.length; i++) {
+//       if (!event.target.closest('.select-wrapper')) {
+//           selectBoxes[i].classList.add('hidden');
+//           angleIcons[i].style.transform = 'rotate(0deg)';
+//       }
+//   }
+// }
