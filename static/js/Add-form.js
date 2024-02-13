@@ -96,7 +96,7 @@ addform.addEventListener("click", () => {
         <!-- Adjust this div to use flex and justify-between for alignment -->
         <div
             class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
-            <span class="me-auto selectedOption">My beer</span>
+            <span class="me-auto selectedOption line-clamp-1">My beer</span>
             <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
         <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
@@ -191,7 +191,7 @@ function showoption() {
         // Slice the string to only include characters from the 13th to the 15th position
         // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
         // Adjust the start index and end index as needed
-        selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
+        selectedOption = selectedOption; // Adjust indices as needed
       }
 
       this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
