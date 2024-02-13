@@ -82,7 +82,7 @@ addform.addEventListener("click", () => {
   newForm.classList.add("container-form");
   let selectBoxId = `selectBox-${formCount}`;
   let selectedId = `selected-${formCount}`;
-  let angleIconId = `angleIcon-${formCount}`;
+  // let angleIconId = `angleIcon-${formCount}`;
   let Price = `Price-${formCount}`;
   // formCount++;
 
@@ -140,76 +140,20 @@ addform.addEventListener("click", () => {
   //   }
 });
 
-function toggleDropdown2(selectBoxId, angleIconId) {
-  let selectBoxes = document.querySelectorAll('.select-Box');
-  let angleIcons = document.querySelectorAll('.fa-angle-down');
+// document.querySelectorAll('.select-Box').forEach(function(selectBox) {
+//   let angleIcon = selectBox.parentElement.querySelector('.fas.fa-angle-down'); // Select the angle icon within the same container
 
-  // Close all other open dropdowns
-  for (let i = 0; i < selectBoxes.length; i++) {
-    if (selectBoxes[i].id !== selectBoxId && !selectBoxes[i].classList.contains('hidden')) {
-      selectBoxes[i].classList.add('hidden');
-      angleIcons[i].style.transform = 'rotate(0deg)';
-    }
-  }
+//   // Attach click event listener to each select element
+//   selectBox.addEventListener('click', function(event) {
+//     event.preventDefault();
+//     toggleDropdown2(this.id, angleIcon.id);
+//   });
 
-  let selectBox = document.getElementById(selectBoxId);
-  let angleIcon = document.getElementById(angleIconId);
-
-  if (selectBox.classList.contains('hidden')) {
-      selectBox.classList.remove('hidden');
-      selectBox.size = selectBox.options.length; // Adjust the size of the dropdown
-      angleIcon.style.transform = 'rotate(180deg)';
-      document.addEventListener('click', closeDropdownOutside2); // Add event listener to close dropdown when clicking outside
-  } else {
-      selectBox.classList.add('hidden');
-      angleIcon.style.transform = 'rotate(0deg)';
-      document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
-  }
-}
-
-function hideDropdown2(selectBoxId, angleIconId) {
-  let selectBox = document.getElementById(selectBoxId);
-  let angleIcon = document.getElementById(angleIconId);
-
-  selectBox.classList.add('hidden');
-  angleIcon.style.transform = 'rotate(0deg)';
-  document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
-}
-
-function updateSelectedOption2(selectBoxId, selectedId) {
-  let selectBox = document.getElementById(selectBoxId);
-  let selectedOption = document.getElementById(selectedId);
-  selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
-  hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
-}
-
-function closeDropdownOutside2(event) {
-  // Check if the click is outside the dropdown and hide it if necessary
-  let selectBoxes = document.querySelectorAll('.select-Box');
-  let angleIcons = document.querySelectorAll('.fa-angle-down');
-
-  for (let i = 0; i < selectBoxes.length; i++) {
-      if (!event.target.closest('.select-wrapper')) {
-          selectBoxes[i].classList.add('hidden');
-          angleIcons[i].style.transform = 'rotate(0deg)';
-      }
-  }
-}
-
-document.querySelectorAll('.select-Box').forEach(function(selectBox) {
-  let angleIcon = selectBox.parentElement.querySelector('.fas.fa-angle-down'); // Select the angle icon within the same container
-
-  // Attach click event listener to each select element
-  selectBox.addEventListener('click', function(event) {
-    event.preventDefault();
-    toggleDropdown2(this.id, angleIcon.id);
-  });
-
-  // Attach change event listener to each select element
-  selectBox.addEventListener('change', function() {
-    updateSelectedOption2(this.id, 'selectedOption1');
-  });
-});
+//   // Attach change event listener to each select element
+//   selectBox.addEventListener('change', function() {
+//     updateSelectedOption2(this.id, 'selectedOption1');
+//   });
+// });
 
 
 
@@ -374,3 +318,59 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', handleResize);
 });
 
+
+// function toggleDropdown2(selectBoxId, angleIconId) {
+//   let selectBoxes = document.querySelectorAll('.select-Box');
+//   let angleIcons = document.querySelectorAll('.fa-angle-down');
+
+//   // Close all other open dropdowns
+//   for (let i = 0; i < selectBoxes.length; i++) {
+//     if (selectBoxes[i].id !== selectBoxId && !selectBoxes[i].classList.contains('hidden')) {
+//       selectBoxes[i].classList.add('hidden');
+//       angleIcons[i].style.transform = 'rotate(0deg)';
+//     }
+//   }
+
+//   let selectBox = document.getElementById(selectBoxId);
+//   let angleIcon = document.getElementById(angleIconId);
+
+//   if (selectBox.classList.contains('hidden')) {
+//       selectBox.classList.remove('hidden');
+//       selectBox.size = selectBox.options.length; // Adjust the size of the dropdown
+//       angleIcon.style.transform = 'rotate(180deg)';
+//       document.addEventListener('click', closeDropdownOutside2); // Add event listener to close dropdown when clicking outside
+//   } else {
+//       selectBox.classList.add('hidden');
+//       angleIcon.style.transform = 'rotate(0deg)';
+//       document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
+//   }
+// }
+
+// function hideDropdown2(selectBoxId, angleIconId) {
+//   let selectBox = document.getElementById(selectBoxId);
+//   let angleIcon = document.getElementById(angleIconId);
+
+//   selectBox.classList.add('hidden');
+//   angleIcon.style.transform = 'rotate(0deg)';
+//   document.removeEventListener('click', closeDropdownOutside2); // Remove event listener when hiding dropdown
+// }
+
+// function updateSelectedOption2(selectBoxId, selectedId) {
+//   let selectBox = document.getElementById(selectBoxId);
+//   let selectedOption = document.getElementById(selectedId);
+//   selectedOption.textContent = selectBox.options[selectBox.selectedIndex].text;
+//   hideDropdown2(selectBoxId, selectedId); // Hide the dropdown after an option is selected
+// }
+
+// function closeDropdownOutside2(event) {
+//   // Check if the click is outside the dropdown and hide it if necessary
+//   let selectBoxes = document.querySelectorAll('.select-Box');
+//   let angleIcons = document.querySelectorAll('.fa-angle-down');
+
+//   for (let i = 0; i < selectBoxes.length; i++) {
+//       if (!event.target.closest('.select-wrapper')) {
+//           selectBoxes[i].classList.add('hidden');
+//           angleIcons[i].style.transform = 'rotate(0deg)';
+//       }
+//   }
+// }
