@@ -36,6 +36,7 @@
 // })
 
 const dropdownContainer = document.getElementById('dropdownContainer');
+const selectBox = document.getElementById('selectBox');
 
 dropdownContainer.addEventListener('touchstart', function(event) {
     event.stopPropagation();
@@ -46,38 +47,24 @@ dropdownContainer.addEventListener('click', function(event) {
     this.classList.toggle('active');
 });
 
-document.addEventListener('touchstart', function(event) {
-    const dropdownContainer = document.getElementById('dropdownContainer');
-    const target = event.target;
-    const isClickInsideDropdown = dropdownContainer.contains(target);
-    const isDropdownActive = dropdownContainer.classList.contains('active');
-
-    if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainer.classList.remove('active');
-    }
-    const selectBox = document.getElementById('selectBox');
-
-// เพิ่ม event listener สำหรับการเลือก option
-    selectBox.addEventListener('change', function(event) {
-    const dropdownContainer = document.getElementById('dropdownContainer');
-    dropdownContainer.classList.remove('active');
-  });
+// หากมีการคลิกตรงกล่อง dropdown หรือเลือก option ลูกศรจะยังแสดง
+selectBox.addEventListener('change', function(event) {
+    dropdownContainer.classList.add('active');
 });
 
 document.addEventListener('click', function(event) {
-    const dropdownContainer = document.getElementById('dropdownContainer');
     const target = event.target;
     const isClickInsideDropdown = dropdownContainer.contains(target);
     const isDropdownActive = dropdownContainer.classList.contains('active');
 
+    // ถ้าคลิกนอก dropdown container และ dropdown กำลังแสดงอยู่ ให้ซ่อน dropdown
     if (!isClickInsideDropdown && isDropdownActive) {
         dropdownContainer.classList.remove('active');
     }
 });
 
-
-
 const dropdownContainer2 = document.getElementById('dropdownContainer2');
+const selectBox2 = document.getElementById('sellerSelectBox');
 
 dropdownContainer2.addEventListener('touchstart', function(event) {
     event.stopPropagation();
@@ -88,34 +75,22 @@ dropdownContainer2.addEventListener('click', function(event) {
     this.classList.toggle('active');
 });
 
-document.addEventListener('touchstart', function(event) {
-    const dropdownContainer = document.getElementById('dropdownContainer2');
-    const target = event.target;
-    const isClickInsideDropdown = dropdownContainer.contains(target);
-    const isDropdownActive = dropdownContainer.classList.contains('active');
-
-    if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainer.classList.remove('active');
-    }
-    const selectBox = document.getElementById('sellerSelectBox');
-
-// เพิ่ม event listener สำหรับการเลือก option
-    selectBox.addEventListener('change', function(event) {
-    const dropdownContainer = document.getElementById('dropdownContainer2');
-    dropdownContainer.classList.remove('active');
-  });
+// หากมีการคลิกตรงกล่อง dropdown หรือเลือก option ลูกศรจะยังแสดง
+selectBox2.addEventListener('change', function(event) {
+    dropdownContainer2.classList.add('active');
 });
 
 document.addEventListener('click', function(event) {
-    const dropdownContainer = document.getElementById('dropdownContainer2');
     const target = event.target;
-    const isClickInsideDropdown = dropdownContainer.contains(target);
-    const isDropdownActive = dropdownContainer.classList.contains('active');
+    const isClickInsideDropdown = dropdownContainer2.contains(target);
+    const isDropdownActive = dropdownContainer2.classList.contains('active');
 
+    // ถ้าคลิกนอก dropdown container และ dropdown กำลังแสดงอยู่ ให้ซ่อน dropdown
     if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainer.classList.remove('active');
+        dropdownContainer2.classList.remove('active');
     }
 });
+
 
 
 // const selectBox = document.getElementById('selectBox');
