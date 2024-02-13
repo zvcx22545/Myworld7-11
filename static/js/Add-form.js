@@ -92,13 +92,19 @@ addform.addEventListener("click", () => {
             <label class="font-bold" for="type">ชิ้นที่ ${formCount + 1}</label>
             <label for="type">ประเภทสินค้า</label>
         </div>
-        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]" onclick="toggleDropdown2('${selectBoxId}', '${angleIconId}')">
-        <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-wrapper">
-            <span id="${selectedId}" class="me-auto line-clamp-1">My Beer</span>
-            <i id="${angleIconId}" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+        <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+        <!-- Adjust this div to use flex and justify-between for alignment -->
+        <div
+            class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+            <span class="me-auto selectedOption">My beer</span>
+            <i id="angleIcon" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
         </div>
-        <select id="${selectBoxId}" name="options" class="absolute top-[2.5rem] inset-0 cursor-pointer w-full h-[150px] select-Box hidden z-10 w-[20%]" onchange="updateSelectedOption2('${selectBoxId}', '${selectedId}')">
-            <option value="" disabled selected>กรุณาเลือก</option>
+        <select id="${selectBoxId}" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box"
+            required>
+            <div id="selectedValueDisplay"></div>
+            <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
+            
+}</option>
         </select>
     </div>
      
@@ -118,7 +124,8 @@ addform.addEventListener("click", () => {
 
   newForm.id = "container-form-" + formCount; // Update ID of the new form section
   formContainer.appendChild(newForm);
-  // showoption();  
+  showoption();
+  assignEventListeners();
   let inputElements = document.querySelectorAll(".Price");
   // Loop through each input element and attach the event listener
   inputElements.forEach(function (inputElement) {
@@ -230,63 +237,63 @@ const decimalformat = () => {
 
 
 
-// function showoption() {
-//   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-//     selectBox.addEventListener("change", function () {
-//       let selectedOption = this.options[this.selectedIndex].textContent;
+function showoption() {
+  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+    selectBox.addEventListener("change", function () {
+      let selectedOption = this.options[this.selectedIndex].textContent;
 
-//       // Check if the selected option text length is more than 15 characters
-//       if (selectedOption.length > 10) {
-//         // Slice the string to only include characters from the 13th to the 15th position
-//         // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
-//         // Adjust the start index and end index as needed
-//         selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
-//       }
+      // Check if the selected option text length is more than 15 characters
+      if (selectedOption.length > 10) {
+        // Slice the string to only include characters from the 13th to the 15th position
+        // If you want to start from the 13th character to the end, you can use selectedOption.slice(12);
+        // Adjust the start index and end index as needed
+        selectedOption = selectedOption.slice(0, 10)+"..."; // Adjust indices as needed
+      }
 
-//       this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
-//     });
-//   });
-// }
+      this.parentNode.querySelector(".selectedOption").textContent = selectedOption;
+    });
+  });
+}
 
 
-// function assignEventListeners() {
-//   document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-//     selectBox.addEventListener("click", function (event) {
-//       event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
-//       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-//       if (!isRotated) {
-//         angleIcon.style.transform = "rotate(180deg)";
-//         isRotated = true;
-//       } else {
-//         angleIcon.style.transform = "rotate(0deg)";
-//         isRotated = false;
-//       }
+function assignEventListeners() {
+  document.querySelectorAll(".select-Box").forEach(function (selectBox) {
+    selectBox.addEventListener("click", function (event) {
+      event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
+      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      if (!isRotated) {
+        angleIcon.style.transform = "rotate(180deg)";
+        isRotated = true;
+      } else {
+        angleIcon.style.transform = "rotate(0deg)";
+        isRotated = false;
+      }
 
-//       if (!isRotated) this.size = 1;
-//     // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
-//     selectBox.addEventListener("click", function () {
-//       // ตรวจสอบสถานะการหมุนจาก dataset
-//       let isRotated = angleIcon.dataset.isRotated === "true";
-//       // เปลี่ยนแปลงการหมุนของ angle icon
-//       angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
-//       // อัปเดตสถานะการหมุนใน dataset
-//       angleIcon.dataset.isRotated = isRotated ? "false" : "true";
-//     });
+      if (!isRotated) this.size = 1;
+    // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
+    selectBox.addEventListener("click", function () {
+      // ตรวจสอบสถานะการหมุนจาก dataset
+      let isRotated = angleIcon.dataset.isRotated === "true";
+      // เปลี่ยนแปลงการหมุนของ angle icon
+      angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
+      // อัปเดตสถานะการหมุนใน dataset
+      angleIcon.dataset.isRotated = isRotated ? "false" : "true";
+    });
 
-//     // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
-//     selectBox.addEventListener("change", function () {
-//       const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-//       // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
-//       angleIcon.style.transform = "rotate(0deg)";
-//       isRotated = false;
-//       this.blur();
-//       this.size = 0;
-//       // อัพเดตสถานะการหมุนใน dataset
-//       this.dataset.isRotated = "false";
-//     });
-//   });
-// })
-// }
+    // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
+    selectBox.addEventListener("change", function () {
+      const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
+      // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
+      angleIcon.style.transform = "rotate(0deg)";
+      isRotated = false;
+      this.blur();
+      this.size = 0;
+      // อัพเดตสถานะการหมุนใน dataset
+      this.dataset.isRotated = "false";
+    });
+  });
+})
+}
 
 
 
