@@ -46,6 +46,11 @@ dropdownContainer.addEventListener('click', function(event) {
     this.classList.toggle('active');
 });
 
+dropdownContainer.addEventListener('touchstart', function(event) {
+    event.stopPropagation();
+    this.classList.toggle('active');
+});
+
 document.addEventListener('touchstart', function(event) {
     const dropdownContainer = document.getElementById('dropdownContainer');
     const target = event.target;
@@ -76,6 +81,11 @@ dropdownContainer2.addEventListener('touchstart', function(event) {
 });
 
 dropdownContainer2.addEventListener('click', function(event) {
+    event.stopPropagation();
+    this.classList.toggle('active');
+});
+
+dropdownContainer2.addEventListener('touchstart', function(event) {
     event.stopPropagation();
     this.classList.toggle('active');
 });
