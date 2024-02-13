@@ -38,16 +38,16 @@
                                 <label class="font-bold" for="type">ชิ้นที่ 1</label>
                                 <label for="type">ประเภทสินค้า</label>
                             </div>
-                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                            <div id="dropdownContainer" class="relative inline-block w-full h-[40px] mt-[0.5rem]">
                                 <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
                                     <span id="selectedOption" class="me-auto line-clamp-1">My beer</span>
-                                    <i id="angleIcon1" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                    <i class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box" required>
                                     <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
+                                    <!-- Add more options as needed -->
                                 </select>
                             </div>
-                            
                         </div>
                         <div class="grid items-end w-full">
                             <label for="type">ราคา (บาท)</label>
