@@ -38,7 +38,7 @@
 const dropdownContainer = document.getElementById('dropdownContainer');
 const selectBox = document.getElementById('selectBox');
 
-dropdownContainer.addEventListener('touchstart', function(event) {
+dropdownContainer.addEventListener('click', function(event) {
     event.stopPropagation();
 });
 
@@ -52,7 +52,7 @@ selectBox.addEventListener('change', function(event) {
     dropdownContainer.classList.add('active');
 });
 
-document.addEventListener('touchstart', function(event) {
+document.addEventListener('click', function(event) {
     const target = event.target;
     const isClickInsideDropdown = dropdownContainer.contains(target);
     const isDropdownActive = dropdownContainer.classList.contains('active');
@@ -66,7 +66,7 @@ document.addEventListener('touchstart', function(event) {
 const dropdownContainer2 = document.getElementById('dropdownContainer2');
 const selectBox2 = document.getElementById('sellerSelectBox');
 
-dropdownContainer2.addEventListener('touchstart', function(event) {
+dropdownContainer2.addEventListener('click', function(event) {
     event.stopPropagation();
 });
 
@@ -80,7 +80,7 @@ selectBox2.addEventListener('change', function(event) {
     dropdownContainer2.classList.add('active');
 });
 
-document.addEventListener('touchstart', function(event) {
+document.addEventListener('click', function(event) {
     const target = event.target;
     const isClickInsideDropdown = dropdownContainer2.contains(target);
     const isDropdownActive = dropdownContainer2.classList.contains('active');
