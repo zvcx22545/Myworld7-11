@@ -93,7 +93,7 @@ const selectBox1 = document.getElementById('sellerSelectBox');
         selectedOption1.textContent = this.options[this.selectedIndex].textContent;
     });
 
-const priceInput = document.getElementById('Price');
-    priceInput.addEventListener('blur', function(event) {
-        this.value = parseFloat(this.value).toFixed(2);
-    });
+// const priceInput = document.getElementById('Price');
+//     priceInput.addEventListener('blur', function(event) {
+//         this.value = parseFloat(this.value).toFixed(2);
+//     });
