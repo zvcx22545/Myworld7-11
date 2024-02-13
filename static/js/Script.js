@@ -38,6 +38,9 @@
 document.getElementById('dropdownContainer').addEventListener('click', function () {
   this.classList.toggle('active');
 });
+document.getElementById('dropdownContainer2').addEventListener('click', function () {
+  this.classList.toggle('active');
+});
 
 // const selectBox = document.getElementById('selectBox');
 //     const selectedOption = document.getElementById('selectedOption');
