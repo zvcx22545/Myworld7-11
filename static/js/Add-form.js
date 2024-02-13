@@ -63,7 +63,11 @@ addform.addEventListener("click", () => {
             
               // Set the price to the matched option's price
               if (selectedOption) {
-                  document.getElementById(Price).value = selectedOption.price;
+                let formattedPrice = parseFloat(selectedOption.price).toLocaleString('en-US', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                });
+                  document.getElementById(Price).value = formattedPrice;
               }
           });
       });
