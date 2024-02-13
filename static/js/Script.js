@@ -35,33 +35,73 @@
 // });
 // })
 
-document.getElementById('dropdownContainer').addEventListener('click', function () {
-  this.classList.toggle('active');
-});
-document.addEventListener('click', function(event) {
-  const dropdownContainer = document.getElementById('dropdownContainer');
-  const target = event.target;
-  const isClickInsideDropdown = dropdownContainer.contains(target);
-  const isDropdownActive = dropdownContainer.classList.contains('active');
-  
-  if (!isClickInsideDropdown && isDropdownActive) {
-      dropdownContainer.classList.remove('active');
-  }
+const dropdownContainer = document.getElementById('dropdownContainer');
+
+dropdownContainer.addEventListener('touchstart', function(event) {
+    event.stopPropagation();
 });
 
-document.getElementById('dropdownContainer2').addEventListener('click', function () {
-  this.classList.toggle('active');
+dropdownContainer.addEventListener('click', function(event) {
+    event.stopPropagation();
+    this.classList.toggle('active');
 });
+
+document.addEventListener('touchstart', function(event) {
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    const target = event.target;
+    const isClickInsideDropdown = dropdownContainer.contains(target);
+    const isDropdownActive = dropdownContainer.classList.contains('active');
+
+    if (!isClickInsideDropdown && isDropdownActive) {
+        dropdownContainer.classList.remove('active');
+    }
+});
+
 document.addEventListener('click', function(event) {
-  const dropdownContainer = document.getElementById('dropdownContainer2');
-  const target = event.target;
-  const isClickInsideDropdown = dropdownContainer.contains(target);
-  const isDropdownActive = dropdownContainer.classList.contains('active');
-  
-  if (!isClickInsideDropdown && isDropdownActive) {
-      dropdownContainer.classList.remove('active');
-  }
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    const target = event.target;
+    const isClickInsideDropdown = dropdownContainer.contains(target);
+    const isDropdownActive = dropdownContainer.classList.contains('active');
+
+    if (!isClickInsideDropdown && isDropdownActive) {
+        dropdownContainer.classList.remove('active');
+    }
 });
+
+
+const dropdownContainer2 = document.getElementById('dropdownContainer2');
+
+dropdownContainer2.addEventListener('touchstart', function(event) {
+    event.stopPropagation();
+});
+
+dropdownContainer2.addEventListener('click', function(event) {
+    event.stopPropagation();
+    this.classList.toggle('active');
+});
+
+document.addEventListener('touchstart', function(event) {
+    const dropdownContainer = document.getElementById('dropdownContainer2');
+    const target = event.target;
+    const isClickInsideDropdown = dropdownContainer.contains(target);
+    const isDropdownActive = dropdownContainer.classList.contains('active');
+
+    if (!isClickInsideDropdown && isDropdownActive) {
+        dropdownContainer.classList.remove('active');
+    }
+});
+
+document.addEventListener('click', function(event) {
+    const dropdownContainer = document.getElementById('dropdownContainer2');
+    const target = event.target;
+    const isClickInsideDropdown = dropdownContainer.contains(target);
+    const isDropdownActive = dropdownContainer.classList.contains('active');
+
+    if (!isClickInsideDropdown && isDropdownActive) {
+        dropdownContainer.classList.remove('active');
+    }
+});
+
 
 // const selectBox = document.getElementById('selectBox');
 //     const selectedOption = document.getElementById('selectedOption');
