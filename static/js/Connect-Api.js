@@ -254,8 +254,6 @@ $.ajax(GetAdmin)
           optionAdmin.name +
           "</option>"
       );
-      console.log(optionAdmin.admin_id)
-
     });
 
     // Set the initial selected option name on the span

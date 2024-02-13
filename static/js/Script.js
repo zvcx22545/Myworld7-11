@@ -77,7 +77,6 @@ document.addEventListener('click', function(event) {
 
 
 
-
 const dropdownContainer2 = document.getElementById('dropdownContainer2');
 
 dropdownContainer2.addEventListener('touchstart', function(event) {
