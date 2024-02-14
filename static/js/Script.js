@@ -1,109 +1,62 @@
-// let isRotated = false; // Track the rotation state
-// document.querySelectorAll(".select-Box").forEach(function (selectBox) {
-//   selectBox.addEventListener("click", function (event) {
-//     event.preventDefault(); // ป้องกันการทำงานเริ่มต้นของเหตุการณ์
-//     const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-//     if (!isRotated) {
-//       angleIcon.style.transform = "rotate(180deg)";
-//       isRotated = true;
-//     } else {
-//       angleIcon.style.transform = "rotate(0deg)";
-//       isRotated = false;
-//     }
+document.addEventListener("DOMContentLoaded", function() {
+    // โค้ดสำหรับ select element แรก
+    var selectBox = document.getElementById("selectBox");
+    var icon1 = document.getElementById("icon1");
+    var lastSelectedOption = null;
 
-//     if (!isRotated) this.size = 1;
-//   // เมื่อมีการคลิกที่ selectBox, ตรวจสอบและเปลี่ยนแปลงสถานะของ angle icon
-//   selectBox.addEventListener("click", function () {
-//     // ตรวจสอบสถานะการหมุนจาก dataset
-//     let isRotated = angleIcon.dataset.isRotated === "true";
-//     // เปลี่ยนแปลงการหมุนของ angle icon
-//     angleIcon.style.transform = isRotated ? "rotate(0deg)" : "rotate(180deg)";
-//     // อัปเดตสถานะการหมุนใน dataset
-//     angleIcon.dataset.isRotated = isRotated ? "false" : "true";
-//   });
-
-//   // เมื่อมีการเปลี่ยนแปลงค่าของ selectBox (เลือก option), รีเซ็ตการหมุนของ angle icon
-//   selectBox.addEventListener("change", function () {
-//     const angleIcon = this.parentElement.querySelector(".fas.fa-angle-down");
-//     // เมื่อ option ถูกเลือก, ตั้งค่าการหมุนเป็น 0 องศา
-//     angleIcon.style.transform = "rotate(0deg)";
-//     isRotated = false;
-//     this.blur();
-//     this.size = 0;
-//     // อัพเดตสถานะการหมุนใน dataset
-//   });
-// });
-// })
-
-const dropdownContainer = document.getElementById('dropdownContainer');
-const selectBox = document.getElementById('selectBox');
-
-dropdownContainer.addEventListener('touchstart', function(event) {
-    event.stopPropagation();
-});
-
-dropdownContainer.addEventListener('click', function(event) {
-    event.stopPropagation();
-    this.classList.toggle('active');
-});
-
-// หากมีการคลิกตรงกล่อง dropdown หรือเลือก option ลูกศรจะยังแสดง
-selectBox.addEventListener('change', function(event) {
-    dropdownContainer.classList.add('active');
-});
-
-document.addEventListener('touchstart', function(event) {
-    const dropdownContainerId = document.getElementById('dropdownContainer')
-      const target = event.target;
-      const isClickInsideDropdown = dropdownContainerId.contains(target);
-      const isDropdownActive = dropdownContainerId.classList.contains('active');
-  
-      if (!isClickInsideDropdown && isDropdownActive) {
-          dropdownContainerId.classList.remove('active');
-      }
-      const selectBox = document.getElementById("selectBox");
-  
-  // เพิ่ม event listener สำหรับการเลือก option
-      selectBox.addEventListener('change', function(event) {
-        const dropdownContainerId = document.getElementById('dropdownContainer')
-      dropdownContainerId.classList.remove('active');
+    // เมื่อคลิกที่ select element แรก
+    selectBox.addEventListener("click", function(event) {
+        var isClickInsideSelect = selectBox.contains(event.target);
+        if (isClickInsideSelect) {
+            icon1.style.transform = "rotate(180deg)";
+        } else {
+            icon1.style.transform = "rotate(0deg)";
+        }
     });
-  });
 
-const dropdownContainer2 = document.getElementById('dropdownContainer2');
-const selectBox2 = document.getElementById('sellerSelectBox');
-
-dropdownContainer2.addEventListener('touchstart', function(event) {
-    event.stopPropagation();
-});
-
-dropdownContainer2.addEventListener('click', function(event) {
-    event.stopPropagation();
-    this.classList.toggle('active');
-});
-
-// หากมีการคลิกตรงกล่อง dropdown หรือเลือก option ลูกศรจะยังแสดง
-selectBox2.addEventListener('change', function(event) {
-    dropdownContainer2.classList.add('active');
-});
-
-document.addEventListener('touchstart', function(event) {
-    const dropdownContainerId = document.getElementById('dropdownContainer2')
-      const target = event.target;
-      const isClickInsideDropdown = dropdownContainerId.contains(target);
-      const isDropdownActive = dropdownContainerId.classList.contains('active');
-  
-      if (!isClickInsideDropdown && isDropdownActive) {
-          dropdownContainerId.classList.remove('active');
-      }
-      const selectBox = document.getElementById("sellerSelectBox");
-  
-  // เพิ่ม event listener สำหรับการเลือก option
-      selectBox.addEventListener('change', function(event) {
-        const dropdownContainerId = document.getElementById('dropdownContainer2')
-      dropdownContainerId.classList.remove('active');
+    // เมื่อมีการเลือก option ใน select element แรก
+    selectBox.addEventListener("change", function() {
+        var selectedOption = selectBox.options[selectBox.selectedIndex];
+        if (selectedOption !== lastSelectedOption) {
+            setTimeout(function() {
+                icon1.style.transform = "rotate(0deg)";
+            }, 10); 
+        }
+        lastSelectedOption = selectedOption;
     });
-  });
+});
+
+// โค้ดสำหรับ select element ที่สอง
+var sellerSelectBox = document.getElementById("sellerSelectBox");
+var icon2 = document.getElementById("icon2");
+var sellerLastSelectedOption = null;
+
+// เมื่อคลิกที่ select element ที่สอง
+sellerSelectBox.addEventListener("click", function(event) {
+    var isClickInsideSelect = sellerSelectBox.contains(event.target);
+    if (isClickInsideSelect) {
+        icon2.style.transform = "rotate(180deg)";
+    } else {
+        icon2.style.transform = "rotate(0deg)";
+    }
+});
+
+// เมื่อมีการเลือก option ใน select element ที่สอง
+sellerSelectBox.addEventListener("change", function() {
+    var selectedOption = sellerSelectBox.options[sellerSelectBox.selectedIndex];
+    if (selectedOption !== sellerLastSelectedOption) {
+        setTimeout(function() {
+            icon2.style.transform = "rotate(0deg)";
+        }, 10); 
+    }
+    sellerLastSelectedOption = selectedOption;
+});
+
+
+
+
+
+
 
 
 

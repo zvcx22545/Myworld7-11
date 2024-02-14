@@ -35,10 +35,4 @@ label,p
    font-size: clamp(0.875rem, 0.8182rem + 0.1515vw, 1rem);
 }
 
-#dropdownContainer.active .fas.fa-angle-down {
-   transform: rotate(180deg);
-}
 
-#dropdownContainer2.active .fas.fa-angle-down {
-   transform: rotate(180deg);
-}

@@ -169,56 +169,45 @@ const decimalformat = () => {
 
 
 function initializeDropdown(formCount) {
-  const cssRule = `#dropdownContainer-${formCount}.active .fas.fa-angle-down {
-      transform: rotate(180deg);
-  }`;
-  console.log(formCount)
-  // Create a new style element
-  const styleElement = document.createElement('style');
-  styleElement.appendChild(document.createTextNode(cssRule));
+  const dropdownContainerId = document.getElementById(`dropdownContainer-${formCount}`);
+  const selectBox = document.getElementById(`selectBox-${formCount}`);
+  const arrowIcon = dropdownContainerId.querySelector('.fas.fa-angle-down');
 
-  // Append the style element to the document head
-  document.head.appendChild(styleElement);
-  const dropdownContainerId = document.getElementById(`dropdownContainer-${formCount}`)
-  // Add event listener to handle click events on the document
-  dropdownContainerId.addEventListener('touchstart', function(event) {
-    event.stopPropagation();
-});
+  // Function to toggle the active class and rotate the arrow icon
+  function toggleDropdown() {
+      const isActive = dropdownContainerId.classList.toggle('active');
+      arrowIcon.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
 
-dropdownContainerId.addEventListener('click', function(event) {
-    event.stopPropagation();
-    this.classList.toggle('active');
-});
-
-document.addEventListener('touchstart', function(event) {
-  const dropdownContainerId = document.getElementById(`dropdownContainer-${formCount}`)
-    const target = event.target;
-    const isClickInsideDropdown = dropdownContainerId.contains(target);
-    const isDropdownActive = dropdownContainerId.classList.contains('active');
-
-    if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainerId.classList.remove('active');
-    }
-    const selectBox = document.getElementById(`selectBox-${formCount}`);
-
-// เพิ่ม event listener สำหรับการเลือก option
-    selectBox.addEventListener('change', function(event) {
-      const dropdownContainerId = document.getElementById(`dropdownContainer-${formCount}`)
-    dropdownContainerId.classList.remove('active');
+  // Event listener for the dropdownContainer
+  dropdownContainerId.addEventListener('click', function(event) {
+      event.stopPropagation();
+      toggleDropdown();
   });
-});
 
-document.addEventListener('click', function(event) {
-  const dropdownContainerId = document.getElementById(`dropdownContainer-${formCount}`)
-    const target = event.target;
-    const isClickInsideDropdown = dropdownContainerId.contains(target);
-    const isDropdownActive = dropdownContainerId.classList.contains('active');
+  // Event listener for closing dropdown when clicking outside
+  document.addEventListener('click', function(event) {
+      const target = event.target;
+      const isClickInsideDropdown = dropdownContainerId.contains(target);
+      const isDropdownActive = dropdownContainerId.classList.contains('active');
 
-    if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainerId.classList.remove('active');
-    }
-});
+      if (!isClickInsideDropdown && isDropdownActive) {
+          dropdownContainerId.classList.remove('active');
+          arrowIcon.style.transform = 'rotate(0deg)';
+      }
+  });
+
+  // Event listener for select box change
+  selectBox.addEventListener('change', function(event) {
+      dropdownContainerId.classList.remove('active');
+      arrowIcon.style.transform = 'rotate(0deg)';
+  });
 }
+
+
+
+
+
 // document.querySelectorAll('.select-Box').forEach(function(selectBox) {
 //   let angleIcon = selectBox.parentElement.querySelector('.fas.fa-angle-down'); // Select the angle icon within the same container
 

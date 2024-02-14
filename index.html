@@ -38,10 +38,10 @@
                                 <label class="font-bold" for="type">ชิ้นที่ 1</label>
                                 <label for="type">ประเภทสินค้า</label>
                             </div>
-                            <div id="dropdownContainer" class="relative inline-block w-full h-[40px] mt-[0.5rem]">
-                                <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
+                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                                <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-container">
                                     <span id="selectedOption" class="me-auto line-clamp-1">My beer</span>
-                                    <i class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                    <i id="icon1" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="selectBox" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box" required>
                                     <option value="" disabled selected>กรุณาเลือกประเภทสินค้า</option>
@@ -76,10 +76,10 @@
                         <div class="grid">
                                 <label for="admin">ผู้ขายสินค้า</label>
                             </div>
-                            <div id="dropdownContainer2" class="relative inline-block w-full h-[40px] mt-[0.5rem]">
+                            <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
                                 <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px]">
                                     <span id="selectedOption1" class="me-auto">ชื่อผู้ขายสินค้า</span>
-                                    <i class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
+                                    <i id="icon2" class="fas fa-angle-down" style="transition: transform 0.2s;"></i>
                                 </div>
                                 <select id="sellerSelectBox" name="options" class="absolute inset-0 opacity-0 cursor-pointer w-full h-[40px] select-Box">
                                     <option value="" disabled selected>ชื่อผู้ขายสินค้า</option>
