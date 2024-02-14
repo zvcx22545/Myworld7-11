@@ -38,7 +38,7 @@
 const dropdownContainer = document.getElementById('dropdownContainer');
 const selectBox = document.getElementById('selectBox');
 
-dropdownContainer.addEventListener('click', function(event) {
+dropdownContainer.addEventListener('touchstart', function(event) {
     event.stopPropagation();
 });
 
@@ -52,21 +52,28 @@ selectBox.addEventListener('change', function(event) {
     dropdownContainer.classList.add('active');
 });
 
-document.addEventListener('click', function(event) {
-    const target = event.target;
-    const isClickInsideDropdown = dropdownContainer.contains(target);
-    const isDropdownActive = dropdownContainer.classList.contains('active');
-
-    // ถ้าคลิกนอก dropdown container และ dropdown กำลังแสดงอยู่ ให้ซ่อน dropdown
-    if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainer.classList.remove('active');
-    }
-});
+document.addEventListener('touchstart', function(event) {
+    const dropdownContainerId = document.getElementById('dropdownContainer')
+      const target = event.target;
+      const isClickInsideDropdown = dropdownContainerId.contains(target);
+      const isDropdownActive = dropdownContainerId.classList.contains('active');
+  
+      if (!isClickInsideDropdown && isDropdownActive) {
+          dropdownContainerId.classList.remove('active');
+      }
+      const selectBox = document.getElementById("selectBox");
+  
+  // เพิ่ม event listener สำหรับการเลือก option
+      selectBox.addEventListener('change', function(event) {
+        const dropdownContainerId = document.getElementById('dropdownContainer')
+      dropdownContainerId.classList.remove('active');
+    });
+  });
 
 const dropdownContainer2 = document.getElementById('dropdownContainer2');
 const selectBox2 = document.getElementById('sellerSelectBox');
 
-dropdownContainer2.addEventListener('click', function(event) {
+dropdownContainer2.addEventListener('touchstart', function(event) {
     event.stopPropagation();
 });
 
@@ -80,16 +87,23 @@ selectBox2.addEventListener('change', function(event) {
     dropdownContainer2.classList.add('active');
 });
 
-document.addEventListener('click', function(event) {
-    const target = event.target;
-    const isClickInsideDropdown = dropdownContainer2.contains(target);
-    const isDropdownActive = dropdownContainer2.classList.contains('active');
-
-    // ถ้าคลิกนอก dropdown container และ dropdown กำลังแสดงอยู่ ให้ซ่อน dropdown
-    if (!isClickInsideDropdown && isDropdownActive) {
-        dropdownContainer2.classList.remove('active');
-    }
-});
+document.addEventListener('touchstart', function(event) {
+    const dropdownContainerId = document.getElementById('dropdownContainer2')
+      const target = event.target;
+      const isClickInsideDropdown = dropdownContainerId.contains(target);
+      const isDropdownActive = dropdownContainerId.classList.contains('active');
+  
+      if (!isClickInsideDropdown && isDropdownActive) {
+          dropdownContainerId.classList.remove('active');
+      }
+      const selectBox = document.getElementById("sellerSelectBox");
+  
+  // เพิ่ม event listener สำหรับการเลือก option
+      selectBox.addEventListener('change', function(event) {
+        const dropdownContainerId = document.getElementById('dropdownContainer2')
+      dropdownContainerId.classList.remove('active');
+    });
+  });
 
 
 
