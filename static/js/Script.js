@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // เมื่อคลิกที่ select element แรก
     document.addEventListener("click", function(event) {
         var isClickInsideSelect = selectBox.contains(event.target);
-        if (isClickInsideSelect) {
+        var isClickOnIcon = event.target === icon1;
+        if (isClickInsideSelect && !isClickOnIcon) {
             icon1.style.transform = "rotate(180deg)";
         } else {
             icon1.style.transform = "rotate(0deg)";
@@ -34,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // เมื่อคลิกที่ select element ที่สอง
     document.addEventListener("click", function(event) {
         var isClickInsideSelect = sellerSelectBox.contains(event.target);
-        if (isClickInsideSelect) {
+        var isClickOnIcon = event.target === icon2;
+        if (isClickInsideSelect && !isClickOnIcon) {
             icon2.style.transform = "rotate(180deg)";
         } else {
             icon2.style.transform = "rotate(0deg)";
