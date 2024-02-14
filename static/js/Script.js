@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var lastSelectedOption = null;
 
     // เมื่อคลิกที่ select element แรก
-    selectBox.addEventListener("click", function(event) {
+    document.addEventListener("click", function(event) {
         var isClickInsideSelect = selectBox.contains(event.target);
         if (isClickInsideSelect) {
             icon1.style.transform = "rotate(180deg)";
@@ -24,33 +24,37 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         lastSelectedOption = selectedOption;
     });
-});
 
-// โค้ดสำหรับ select element ที่สอง
-var sellerSelectBox = document.getElementById("sellerSelectBox");
-var icon2 = document.getElementById("icon2");
-var sellerLastSelectedOption = null;
 
-// เมื่อคลิกที่ select element ที่สอง
-sellerSelectBox.addEventListener("click", function(event) {
-    var isClickInsideSelect = sellerSelectBox.contains(event.target);
-    if (isClickInsideSelect) {
-        icon2.style.transform = "rotate(180deg)";
-    } else {
-        icon2.style.transform = "rotate(0deg)";
-    }
-});
+    // โค้ดสำหรับ select element ที่สอง
+    var sellerSelectBox = document.getElementById("sellerSelectBox");
+    var icon2 = document.getElementById("icon2");
+    var sellerLastSelectedOption = null;
 
-// เมื่อมีการเลือก option ใน select element ที่สอง
-sellerSelectBox.addEventListener("change", function() {
-    var selectedOption = sellerSelectBox.options[sellerSelectBox.selectedIndex];
-    if (selectedOption !== sellerLastSelectedOption) {
-        setTimeout(function() {
+    // เมื่อคลิกที่ select element ที่สอง
+    document.addEventListener("click", function(event) {
+        var isClickInsideSelect = sellerSelectBox.contains(event.target);
+        if (isClickInsideSelect) {
+            icon2.style.transform = "rotate(180deg)";
+        } else {
             icon2.style.transform = "rotate(0deg)";
-        }, 10); 
-    }
-    sellerLastSelectedOption = selectedOption;
+        }
+    });
+
+    // เมื่อมีการเลือก option ใน select element ที่สอง
+    sellerSelectBox.addEventListener("change", function() {
+        var selectedOption = sellerSelectBox.options[sellerSelectBox.selectedIndex];
+        if (selectedOption !== sellerLastSelectedOption) {
+            setTimeout(function() {
+                icon2.style.transform = "rotate(0deg)";
+            }, 10); 
+        }
+        sellerLastSelectedOption = selectedOption;
+    });
+
+
 });
+
 
 
 
