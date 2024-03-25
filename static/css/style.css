@@ -11,9 +11,10 @@
    text-transform: capitalize;
 }
 body{
-    background-image: url(https://cdn.discordapp.com/attachments/1147854094929776664/1201735870869417984/bg.png);
+    background-image: url('../img/menu\ 02\ 2.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
+    background-position: center;
  }
 
  .styled-select select {

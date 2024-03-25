@@ -16,12 +16,12 @@
 <body>
     
     <div class="flex justify-center items-center min-h-screen m-[2rem] min-[430px]:m-[0.5rem]">
-        <div class="w-[100%] max-[1180px]:mt-[10rem] max-[1183px]:mx-[0.5rem] max-[1600px]:my-[13rem] max-[1600px]:mx-[20rem] min-[1600px]:mt-[16rem] min-[1600px]:mx-[16rem] max-[500px]:my-[1.5rem] ">
-            <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]">
-            <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] mx-auto text-center p-[1rem]">
+        <div class="w-[100%] max-[1180px]:mt-[10rem] max-[1183px]:mx-[0.5rem] max-[1600px]:mt-[18rem] max-lg:mt-[20rem] max-md:mt-[13rem] max-[1600px]:mx-[20rem] min-[1600px]:mt-[20rem] min-[1600px]:mx-[20rem]">
+            <!-- <img src="/static/img/logo.png" alt="" class="mx-auto block mb-[1rem] w-[83px]"> -->
+            <div class="w-[100%] h-cover border-1 border-[#28B7E1] rounded-[15px] bg-white mx-auto text-center p-[1rem]">
                 <div id="top-contents" class="text-center mb-[1rem]">
-                    <h1 class="text-bold">My World</h1>
-                    <h1 class="text-bold">กรอกข้อมูลการขาย เพื่อสะสมแต้ม</h1>
+                    <h1 class="font-bold text-2xl text-[#28B7E1]">My World</h1>
+                    <h1 class="font-bold">สะสมแต้มได้ทุกยอดการสั่งซื้อ</h1>
                 </div>
                 <form action="" id="form-submit">
                     <div class="text-left">
@@ -30,14 +30,15 @@
                             required>
                     </div>
 
-                    <hr class="mb-[2rem]">
+                    <hr class="my-2">
 
                     <div class="text-left flex justify-between gap-[15px] items-end">
                         <div class="w-full">
-                            <div class="grid">
+                            <!-- <div class="grid">
                                 <label class="font-bold" for="type">ชิ้นที่ 1</label>
                                 <label for="type">ประเภทสินค้า</label>
-                            </div>
+                             </div> -->
+                             <label for="type">ประเภทสินค้า</label>
                             <div class="relative inline-block w-full h-[40px] mt-[0.5rem]">
                                 <div class="bg-[#DEDEDE] border border-black rounded-lg p-2 cursor-pointer flex justify-end items-center w-full h-[40px] select-container">
                                     <span id="selectedOption" class="me-auto line-clamp-1">My beer</span>
@@ -55,13 +56,13 @@
                         </div>
                     </div>
 
-                    <div class="text-left  gap-[15px] my-[10px]" id="container-form"></div>
+                    <!-- <div class="text-left  gap-[15px] my-[10px]" id="container-form"></div> -->
 
-                    <div class="mt-[2rem] flex justify-end">
+                    <!-- <div class="mt-[2rem] flex justify-end">
                         <button class=" border-2 border-[#28B7E1] rounded-[6px] w-[20%] py-[5px] text-[#28B7E1]" type="button" id="add-form"> <i class="bi bi-plus-circle"></i>เพิ่ม</button>
-                    </div>
+                    </div> -->
 
-                    <hr class="mt-[2rem]">
+                    <hr class="mt-2">
 
                     <div class="text-left flex justify-between gap-[15px] items-end mt-[2rem]">
                         <div class="w-full">
@@ -70,9 +71,9 @@
                             </div>
                             <input
                                 class="w-[100%] h-[40px] bg-[#DEDEDE] text-[#858585] border-1 border-[#000] p-2 rounded-lg mt-[0.5rem]"
-                                value="หน้าร้าน" readonly>
+                                value="ร้านโซห่วย" readonly>
                         </div>
-                        <div class="w-full">
+                        <!-- <div class="w-full">
                         <div class="grid">
                                 <label for="admin">ผู้ขายสินค้า</label>
                             </div>
@@ -85,7 +86,7 @@
                                     <option value="" disabled selected>ชื่อผู้ขายสินค้า</option>
                                 </select>
                             </div>
-                    </div>
+                    </div> -->
                     </div>
 
                 <!-- <hr class="mt-[2rem]"> -->
@@ -105,7 +106,7 @@
                         </div>
                     </div>
 
-                    <div class=" mb-[2rem] max-[768px]:mt-[2rem] min-[768px]:mt-[5rem]">
+                    <div class=" mb-2 max-[768px]:mt-[2rem] min-[768px]:mt-[5rem]">
                         <button type="submit"
                             class="h-[40px] w-[180px] bg-[#28B7E1] border-1 border-[#28B7E1] text-[#fff] rounded-lg hover:bg-[#fff] hover:text-[#28B7E1]"
                             id="sent">ยืนยัน</button>
@@ -136,7 +137,7 @@
                             <path
                                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                         </svg>
-                        <h1>ลงทะเบียนสำเร็จ<br>คุณได้ทำการสะสมแต้มให้ทางลูกค้า</h1>
+                        <h1>ลงทะเบียนสำเร็จ<br>คุณได้ทำการสะสมแต้มสำเร็จ</h1>
                     </div>
                 </div>
 
